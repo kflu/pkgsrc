@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.6 2022/09/08 07:21:03 pin Exp $
+# $NetBSD: Makefile,v 1.8 2023/03/23 10:30:43 pin Exp $
 
-DISTNAME=	hyperfine-1.15.0
+DISTNAME=	hyperfine-1.16.1
 CATEGORIES=	benchmarks
 MASTER_SITES=	${MASTER_SITE_GITHUB:=sharkdp/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}

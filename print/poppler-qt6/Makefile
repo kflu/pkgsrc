@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.4 2023/01/29 21:14:56 ryoon Exp $
+# $NetBSD: Makefile,v 1.7 2023/04/07 18:48:43 nros Exp $
 
 # this must be set before compiler.mk
 # is included in Makefile.common
@@ -10,7 +10,6 @@ PKGREVISION= 1
 PKGNAME=	poppler-qt6-${POPPLER_VERS}
 COMMENT=	PDF rendering library (QT6 wrapper)
 MAINTAINER=	pkgsrc-users@NetBSD.org
-
 
 CMAKE_ARGS+=	-DBUILD_GTK_TESTS=OFF
 CMAKE_ARGS+=	-DENABLE_GLIB=OFF

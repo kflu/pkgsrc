@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.21 2022/06/28 11:35:03 wiz Exp $
+# $NetBSD: Makefile,v 1.23 2023/03/17 12:44:15 jperkin Exp $
 
 DISTNAME=	check_spamd-1.6.0
 PKGNAME=	nagios-plugin-${DISTNAME:S/check_//1}

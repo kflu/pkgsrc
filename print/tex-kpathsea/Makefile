@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.25 2022/04/17 10:22:02 markd Exp $
+# $NetBSD: Makefile,v 1.27 2023/04/11 07:49:04 tnn Exp $
 
 DISTNAME=	kpathsea
-PKGNAME=	tex-${DISTNAME}-2022
-TEXLIVE_REV=	62671
+PKGNAME=	tex-${DISTNAME}-2023
+TEXLIVE_REV=	66822
 
 MAINTAINER=	minskim@NetBSD.org
 HOMEPAGE=	https://ctan.org/pkg/kpathsea

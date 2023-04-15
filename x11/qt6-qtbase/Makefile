@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.4 2023/01/29 21:15:18 ryoon Exp $
+# $NetBSD: Makefile,v 1.6 2023/04/07 18:28:05 nros Exp $
 
 DISTNAME=	qtbase-everywhere-src-${QTVERSION}
 PKGNAME=	qt6-qtbase-${QTVERSION}
-PKGREVISION=	2
 COMMENT=	C++ X GUI toolkit
 CATEGORIES=	x11
 
@@ -35,6 +34,7 @@ CONFIGURE_ARGS+=	-no-tslib
 CONFIGURE_ARGS+=	-no-vulkan
 CONFIGURE_ARGS+=	-no-use-gold-linker
 CONFIGURE_ARGS+=	-pkg-config
+CONFIGURE_ARGS+=	-qt-publicsuffix
 CONFIGURE_ARGS+=	-release
 CONFIGURE_ARGS+=	-shared
 CONFIGURE_ARGS+=	-system-doubleconversion
@@ -106,6 +106,7 @@ LDFLAGS.FreeBSD+=		-lutil
 REPLACE_PERL+=		libexec/syncqt.pl
 REPLACE_PERL+=		mkspecs/features/data/unix/findclasslist.pl
 REPLACE_BASH+=		util/android/android_emulator_launcher.sh
+REPLACE_PYTHON+=	util/testrunner/sanitizer-testrunner.py
 REPLACE_PYTHON+=	util/testrunner/qt-testrunner.py
 
 PTHREAD_OPTS+=		require
@@ -132,7 +133,7 @@ SUBST_CLASSES+=		path
 SUBST_STAGE.path=	pre-configure
 SUBST_MESSAGE.path=	Add to default XDG path.
 SUBST_FILES.path=	src/corelib/io/qstandardpaths_unix.cpp
-SUBST_VARS.path=	PREFIX
+SUBST_VARS.path=	PREFIX PKG_SYSCONFBASE
 
 # The pri file has WRKSRC in it.
 SUBST_CLASSES+=		pkgconf
@@ -207,7 +208,6 @@ PKGCONFIG_OVERRIDE+=	lib/pkgconfig/Qt6Xml.pc
 .include "../../archivers/zstd/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../databases/sqlite3/buildlink3.mk"
-.include "../../devel/at-spi2-core/buildlink3.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/pcre2/buildlink3.mk"

@@ -1,9 +1,8 @@
-# $NetBSD: Makefile,v 1.70 2023/01/29 21:15:35 ryoon Exp $
+# $NetBSD: Makefile,v 1.75 2023/03/04 14:36:36 gdt Exp $
 #
 
-V=		6.0.6
+V=		7.0.0
 DISTNAME=	kicad-${V}
-PKGREVISION=	5
 CATEGORIES=	cad
 MASTER_SITES=	${MASTER_SITE_GITLAB:=kicad/code/}
 GITLAB_PROJECT=	kicad
@@ -15,22 +14,28 @@ HOMEPAGE=	https://www.kicad.org/
 COMMENT=	Schematic and PCB CAD software (stable branch)
 LICENSE=	gnu-gpl-v3
 
-BUILD_DEPENDS+=	swig3-[0-9]*:../../devel/swig3
+BUILD_DEPENDS+=	swig4-[0-9]*:../../devel/swig4
 DEPENDS+=	git-base-[0-9]*:../../devel/git-base
 
 USE_PKGLOCALEDIR=	yes
-USE_LANGUAGES=		c c++11
+USE_LANGUAGES=		c c++17
+# charconv (8), std::filesystem (9)
+GCC_REQD+=		9
 USE_CMAKE=		yes
 USE_TOOLS+=		pkg-config msgfmt msgmerge xgettext
 
 CMAKE_ARGS+=		-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=		-DKICAD_SPICE=OFF
 CMAKE_ARGS+=		-DKICAD_SCRIPTING_WXPYTHON=OFF
-CMAKE_ARGS+=		-DKICAD_USE_OCC=OFF # pkgsrc/cad/oce, but it is too old
 CMAKE_ARGS+=		-DKICAD_BUILD_I18N=ON
 
-CMAKE_MODULE_PATH_OVERRIDE= \
-			new/CMakeLists.txt
+# KICAD_USE_EGL must be defined if wxWidgets was compiled with EGL canvas.
+.include "../../graphics/MesaLib/features.mk"
+.if !empty(MESALIB_SUPPORTS_EGL:Myes)
+CMAKE_ARGS+=		-DKICAD_USE_EGL=ON
+.else
+CMAKE_ARGS+=		-DKICAD_USE_EGL=OFF
+.endif
 
 PY_PATCHPLIST=		yes
 
@@ -44,6 +49,8 @@ NOT_FOR_PLATFORM+=	Darwin-*-*
 
 # needs 64-bit CAS for std::atomic<size_t>
 .include "../../mk/atomic64.mk"
+.include "../../cad/occt/buildlink3.mk"
+.include "../../databases/unixodbc/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/cmake/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
@@ -55,8 +62,7 @@ BUILDLINK_API_DEPENDS.glm+=	glm>=0.9.9.8
 .include "../../graphics/cairo/buildlink3.mk"
 .include "../../lang/python/extension.mk"
 .include "../../www/curl/buildlink3.mk"
-.include "../../x11/wxGTK30/buildlink3.mk"
+.include "../../x11/wxGTK32/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../mk/bsd.prefs.mk"
 .include "../../mk/bsd.pkg.mk"

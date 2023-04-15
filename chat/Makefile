@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.277 2023/01/03 10:30:24 khorben Exp $
+# $NetBSD: Makefile,v 1.280 2023/04/01 10:13:44 bsiegert Exp $
 #
 
 COMMENT=	Communication programs
@@ -41,6 +41,7 @@ SUBDIR+=	goofey
 SUBDIR+=	hexchat
 SUBDIR+=	i2cb
 SUBDIR+=	i2cbd
+SUBDIR+=	iamb
 SUBDIR+=	icb
 SUBDIR+=	icbirc
 SUBDIR+=	ii
@@ -55,6 +56,7 @@ SUBDIR+=	irssi-xmpp
 SUBDIR+=	jabberd2
 SUBDIR+=	jicofo
 SUBDIR+=	jitsi-meet-prosody
+SUBDIR+=	jitsi-srtp
 SUBDIR+=	jitsi-videobridge
 SUBDIR+=	kgb-bot
 SUBDIR+=	konversation
@@ -133,6 +135,7 @@ SUBDIR+=	sirc
 SUBDIR+=	skypeweb-purple
 SUBDIR+=	spectrum
 SUBDIR+=	srain
+SUBDIR+=	ssh-chat
 SUBDIR+=	swift
 SUBDIR+=	swirc
 SUBDIR+=	telegram-purple

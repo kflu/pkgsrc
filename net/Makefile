@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1501 2023/01/31 18:53:46 nikita Exp $
+# $NetBSD: Makefile,v 1.1509 2023/04/09 10:03:18 nros Exp $
 #
 
 COMMENT=	Networking tools
@@ -30,6 +30,7 @@ SUBDIR+=	arp-scan
 SUBDIR+=	arpd
 SUBDIR+=	arping
 SUBDIR+=	arpwatch
+SUBDIR+=	arti
 SUBDIR+=	asuka
 SUBDIR+=	autonet
 SUBDIR+=	avahi
@@ -112,6 +113,7 @@ SUBDIR+=	dlint
 SUBDIR+=	dnc
 SUBDIR+=	dnscap
 SUBDIR+=	dnscheck
+SUBDIR+=	dnscontrol
 SUBDIR+=	dnscrypt-proxy2
 SUBDIR+=	dnsdist
 SUBDIR+=	dnsmasq
@@ -201,6 +203,7 @@ SUBDIR+=	gnome-online-accounts
 SUBDIR+=	gnome-vfs-smb
 SUBDIR+=	gnugk
 SUBDIR+=	gnunet
+SUBDIR+=	gnunet-gtk
 SUBDIR+=	go-dnstap
 SUBDIR+=	go-net
 SUBDIR+=	go-websocket
@@ -216,6 +219,7 @@ SUBDIR+=	gssdp12
 SUBDIR+=	gst-plugins0.10-mms
 SUBDIR+=	gst-plugins0.10-rtmp
 SUBDIR+=	gst-plugins0.10-soup
+SUBDIR+=	gst-plugins1-adaptivedemux2
 SUBDIR+=	gst-plugins1-libnice
 SUBDIR+=	gst-plugins1-rtmp
 SUBDIR+=	gst-plugins1-soup
@@ -802,6 +806,7 @@ SUBDIR+=	py-zmq
 SUBDIR+=	pygopherd
 SUBDIR+=	qadsl
 SUBDIR+=	qbittorrent
+SUBDIR+=	qt6-qtgrpc
 SUBDIR+=	qt6-qtremoteobjects
 SUBDIR+=	qt6-qtwebsockets
 SUBDIR+=	quagga
@@ -973,6 +978,7 @@ SUBDIR+=	traceroute-as
 SUBDIR+=	traceroute-nanog
 SUBDIR+=	trafshow
 SUBDIR+=	transmission
+SUBDIR+=	transmission-common
 SUBDIR+=	transmission-gtk
 SUBDIR+=	transmission-qt
 SUBDIR+=	trickle

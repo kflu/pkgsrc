@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.4 2023/01/29 21:16:31 ryoon Exp $
+# $NetBSD: Makefile,v 1.6 2023/04/12 16:13:04 wiz Exp $
 
-DISTNAME=	gifski-1.10.0
+DISTNAME=	gifski-1.10.3
 PKGREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ImageOptim/}
@@ -16,13 +16,10 @@ USE_TOOLS+=	pkg-config
 
 INSTALLATION_DIRS=	bin
 
-RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.clang}/lib
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/gifski \
 		${DESTDIR}${PREFIX}/bin
 
 .include "../../lang/rust/cargo.mk"
-.include "../../lang/clang/buildlink3.mk"
 .include "../../multimedia/ffmpeg5/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

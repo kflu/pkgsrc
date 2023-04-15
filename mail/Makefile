@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.593 2023/02/09 07:08:20 wiz Exp $
+# $NetBSD: Makefile,v 1.595 2023/03/08 23:45:10 nikita Exp $
 #
 
 COMMENT=	Electronic mail utilities
@@ -109,6 +109,7 @@ SUBDIR+=	grepmail
 SUBDIR+=	greylisting-spp
 SUBDIR+=	gyb
 SUBDIR+=	heirloom-mailx
+SUBDIR+=	himalaya
 SUBDIR+=	hypermail
 SUBDIR+=	ifile
 SUBDIR+=	im
@@ -405,6 +406,7 @@ SUBDIR+=	thunderbird52-l10n
 SUBDIR+=	thunderbird68
 SUBDIR+=	thunderbird68-l10n
 SUBDIR+=	thunderbird78
+SUBDIR+=	thunderbird78-l10n
 SUBDIR+=	tmda
 SUBDIR+=	tnef
 SUBDIR+=	tnef2txt

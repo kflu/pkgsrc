@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.21 2022/04/10 04:00:45 markd Exp $
+# $NetBSD: Makefile,v 1.24 2023/04/11 12:30:29 markd Exp $
 
 DISTNAME=	collection-binextra
-PKGNAME=	texlive-${DISTNAME}-2020pre1
+PKGNAME=	texlive-${DISTNAME}-2023pre2
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	61780
+TEXLIVE_REV=	66381
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.tug.org/texlive/
@@ -17,8 +17,8 @@ DEPENDS+=	tex-a2ping-[0-9]*:../../graphics/tex-a2ping
 # depend arara
 # XXX asymptote conflicts with other packages by requiring ghostscript-agpl
 #DEPENDS+=	asymptote-[0-9]*:../../graphics/asymptote
-DEPENDS+=	tex-bibtex8-[0-9]*:../../print/tex-bibtex8
-# depend bibtexu
+DEPENDS+=	bibtex8-[0-9]*:../../print/bibtex8
+DEPENDS+=	bibtexu-[0-9]*:../../print/bibtexu
 # depend bundledoc
 # depend checklistings
 # depend chklref
@@ -34,6 +34,7 @@ DEPENDS+=	chktex-[0-9]*:../../print/chktex
 DEPENDS+=	tex-cweb-[0-9]*:../../print/tex-cweb
 # depend de-macro
 DEPENDS+=	detex-[0-9]*:../../textproc/detex
+# depend digestif
 # depend dtl
 # depend dtxgen
 DEPENDS+=	dvi2tty-[0-9]*:../../converters/dvi2tty
@@ -92,6 +93,7 @@ DEPENDS+=	seetexk-[0-9]*:../../print/seetexk
 # depend sty2dtx
 # depend synctex
 DEPENDS+=	tex-tex4ebook-[0-9]*:../../print/tex-tex4ebook
+# depend texaccents
 # depend texcount
 # depend texdef
 # depend texdiff
@@ -111,6 +113,7 @@ DEPENDS+=	tex-texlive-scripts-extra-[0-9]*:../../print/tex-texlive-scripts-extra
 # depend tlcockpit
 # depend tpic2pdftex
 # depend typeoutfileinfo
+DEPENDS+=	upmendex-[0-9]*:../../textproc/upmendex
 # web entirely included in web2c
 # depend xindex
 DEPENDS+=	tex-xindy-[0-9]*:../../textproc/tex-xindy

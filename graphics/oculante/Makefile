@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.35 2023/01/29 21:16:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.43 2023/04/03 11:07:55 pin Exp $
 
-DISTNAME=	oculante-0.6.50
-PKGREVISION=	1
+DISTNAME=	oculante-0.6.60
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GITHUB:=woelper/}
 
@@ -19,8 +18,6 @@ USE_TOOLS+=	pkg-config perl
 
 INSTALLATION_DIRS=	bin
 
-MAKE_ENV+=	OPENSSL_DIR=${BUILDLINK_PREFIX.openssl:Q}
-RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.openssl}/lib
 RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.libX11}/lib
 RUSTFLAGS+=	-C link-arg=-L${BUILDLINK_PREFIX.libX11}/lib
 RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.gtk3}/lib
@@ -32,16 +29,15 @@ RUSTFLAGS+=	-C link-arg=${COMPILER_RPATH_FLAG}${BUILDLINK_PREFIX.gtk3}/lib
 # graphics/libjpeg-turbo location.
 # Also note that the 'turbo' feature may require extra dependencies to build.
 CARGO_NO_DEFAULT_FEATURES=	YES
-CARGO_FEATURES+=		file_open
+CARGO_FEATURES+=		file_open avif_native
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/target/release/oculante \
 		${DESTDIR}${PREFIX}/bin
 
-DEPENDS+=       nasm-[0-9]*:../../devel/nasm
+DEPENDS+=	nasm-[0-9]*:../../devel/nasm
 
 .include "../../lang/rust/cargo.mk"
-.include "../../security/openssl/buildlink3.mk"
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../fonts/fontconfig/buildlink3.mk"
 .include "../../x11/gtk3/buildlink3.mk"

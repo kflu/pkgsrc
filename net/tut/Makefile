@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.10 2023/01/11 17:28:33 bsiegert Exp $
+# $NetBSD: Makefile,v 1.14 2023/04/05 20:47:46 bsiegert Exp $
 
-DISTNAME=	tut-1.0.31
+DISTNAME=	tut-2.0.1
 PKGREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=RasmusLindroth/}
@@ -11,7 +11,7 @@ HOMEPAGE=	https://tut.anv.nu/
 COMMENT=	TUI for Mastodon with shellout
 LICENSE=	mit
 
-EGS=	config.example.ini config/toot.tmpl config/user.tmpl
+EGS=	config.example.toml config/toot.tmpl config/user.tmpl
 EGDIR=	share/examples/${PKGBASE}
 DOCDIR=	share/doc/${PKGBASE}
 
@@ -26,7 +26,7 @@ post-install:
 		${DESTDIR}${PREFIX}/${DOCDIR}
 	${INSTALL_DATA} ${EGS:S|^|${WRKSRC}/|}			\
 		${DESTDIR}${PREFIX}/${EGDIR}
-.for t in *.ini
+.for t in *.toml
 	${INSTALL_DATA} ${WRKSRC}/config/themes/${t}		\
 		${DESTDIR}${PREFIX}/${EGDIR}/themes
 .endfor

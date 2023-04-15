@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.16 2023/02/11 14:03:28 taca Exp $
+# $NetBSD: Makefile,v 1.20 2023/04/01 10:14:21 taca Exp $
 
-DISTNAME=	kramdown-rfc2629-1.6.22
+DISTNAME=	kramdown-rfc2629-1.6.27
+PKGREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -12,11 +13,18 @@ USE_LANGUAGES=	# none
 
 RUBYGEM_OPTIONS+=	--format-executable
 
-OVERRIDE_GEMSPEC+=	kramdown>=2.4.0
-
-DEPENDS+=	${RUBY_PKGPREFIX}-kramdown>=2.3.0:../../textproc/ruby-kramdown
+DEPENDS+=	${RUBY_PKGPREFIX}-kramdown>=2.4.0<2.5:../../textproc/ruby-kramdown
 DEPENDS+=	${RUBY_PKGPREFIX}-kramdown-parser-gfm>=1.1<2:../../textproc/ruby-kramdown-parser-gfm
 DEPENDS+=	${RUBY_PKGPREFIX}-certified>=1.0<2:../../security/ruby-certified
+DEPENDS+=	${RUBY_PKGPREFIX}-unicode-name>=1.0<2:../../textproc/ruby-unicode-name
+DEPENDS+=	${RUBY_PKGPREFIX}-unicode-blocks>=1.0<2:../../textproc/ruby-unicode-blocks
+DEPENDS+=	${RUBY_PKGPREFIX}-unicode-scripts>=1.0<2:../../textproc/ruby-unicode-scripts
+DEPENDS+=	${RUBY_PKGPREFIX}-net-http-persistent>=4.0<5:../../www/ruby-net-http-persistent
+
+OVERRIDE_GEMSPEC+=	json_pure: json>=2.0
+
+pre-configure:
+	${CHMOD} +x ${WRKSRC}/bin/*
 
 .include "../../lang/ruby/gem.mk"
 .include "../../mk/bsd.pkg.mk"

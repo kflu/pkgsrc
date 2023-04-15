@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.144 2023/01/29 21:17:13 ryoon Exp $
+# $NetBSD: Makefile,v 1.146 2023/04/03 20:21:13 nros Exp $
 
 DISTNAME=	stellarium-1.2
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Stellarium/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -12,7 +12,6 @@ HOMEPAGE=	https://stellarium.org/
 COMMENT=	Generate photorealistic skies with OpenGL
 LICENSE=	gnu-gpl-v2
 
-USE_CMAKE=	yes
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	msgfmt perl pod2man
 
@@ -30,6 +29,7 @@ PLIST.desktop=		yes
 .endif
 
 .include "../../converters/libiconv/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
 .include "../../devel/gettext-lib/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"

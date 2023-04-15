@@ -1,4 +1,4 @@
-/* $NetBSD: pbuild.h,v 1.8 2023/02/10 23:14:32 joerg Exp $ */
+/* $NetBSD: pbuild.h,v 1.10 2023/02/12 21:17:24 joerg Exp $ */
 
 /*-
  * Copyright (c) 2007 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -96,6 +96,8 @@ struct build_job {
 
 	enum job_state state;
 	int pkg_depth;
+	long long pkg_weighted_depth;
+	long long pkg_weight;
 
 	/**
 	 * The number of direct dependencies that must be built before
@@ -106,7 +108,7 @@ struct build_job {
 	/** The packages that depend on this package. */
 	SLIST_HEAD(, dependency_list) depending_pkgs;
 
-	TAILQ_ENTRY(build_job) build_link;
+	size_t buildable_index;
 	SLIST_ENTRY(build_job) hash_link;
 };
 

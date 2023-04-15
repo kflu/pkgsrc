@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.29 2022/01/05 15:41:20 wiz Exp $
+# $NetBSD: Makefile,v 1.32 2023/03/29 09:04:02 wiz Exp $
 
-DISTNAME=	keyring-21.2.1
+DISTNAME=	keyring-23.13.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
-PKGREVISION=	2
+PKGREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	${MASTER_SITE_PYPI:=k/keyring/}
 
@@ -11,20 +11,27 @@ HOMEPAGE=	https://github.com/jaraco/keyring
 COMMENT=	Store and access your passwords safely
 LICENSE=	python-software-foundation
 
-BUILD_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm>=3.4.1:../../devel/py-setuptools_scm
-#TEST_DEPENDS+=	${PYPKGPREFIX}-test>=3.7.4:../../devel/py-test
-#TEST_DEPENDS+=	${PYPKGPREFIX}-test-flake8-[0-9]*:../../devel/py-test-flake8
+DEPENDS+=	${PYPKGPREFIX}-jaraco.classes>=0:../../devel/py-jaraco.classes
+DEPENDS+=	${PYPKGPREFIX}-jeepney>=0.4.2:../../sysutils/py-jeepney
+DEPENDS+=	${PYPKGPREFIX}-secretstorage>=3.2:../../security/py-secretstorage
+TOOL_DEPENDS+=	${PYPKGPREFIX}-setuptools_scm>=3.4.1:../../devel/py-setuptools_scm
+TOOL_DEPENDS+=	${PYPKGPREFIX}-wheel-[0-9]*:../../devel/py-wheel
+TEST_DEPENDS+=	${PYPKGPREFIX}-test>=6:../../devel/py-test
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-cov-[0-9]*:../../devel/py-test-cov
+TEST_DEPENDS+=	${PYPKGPREFIX}-test-flake8-[0-9]*:../../devel/py-test-flake8
+
+USE_LANGUAGES=	# none
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
-USE_PKG_RESOURCES=	yes
-
 .include "../../lang/python/pyversion.mk"
-.if ${_PYTHON_VERSION} < 38
-DEPENDS+=	${PYPKGPREFIX}-importlib-metadata-[0-9]*:../../devel/py-importlib-metadata
-.endif
 
-USE_LANGUAGES=	# none
+.if ${PYTHON_VERSION} < 312
+DEPENDS+=	${PYPKGPREFIX}-importlib-metadata>=4.11.4:../../devel/py-importlib-metadata
+.endif
+.if ${PYTHON_VERSION} < 309
+DEPENDS+=	${PYPKGPREFIX}-importlib-resources>=0:../../devel/py-importlib-resources
+.endif
 
 REPLACE_PYTHON+=	keyring/cli.py
 
@@ -32,10 +39,10 @@ post-install:
 	cd ${DESTDIR}${PREFIX}/bin && \
 	${MV} keyring keyring-${PYVERSSUFFIX} || ${TRUE}
 
-# requires: pytest-black
-#do-test:
-#	cd ${WRKSRC} && pytest-${PYVERSSUFFIX} tests
+# 2 failed, 11 passed, 83 skipped
+do-test:
+	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} pytest-${PYVERSSUFFIX} tests
 
 .include "../../lang/python/application.mk"
-.include "../../lang/python/egg.mk"
+.include "../../lang/python/wheel.mk"
 .include "../../mk/bsd.pkg.mk"

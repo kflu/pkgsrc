@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.580 2023/01/25 17:06:04 pho Exp $
+# $NetBSD: Makefile,v 1.583 2023/03/15 20:22:54 schmonz Exp $
 #
 
 COMMENT=	Miscellaneous utilities
@@ -73,6 +73,7 @@ SUBDIR+=	emacs-wiki
 SUBDIR+=	epm
 SUBDIR+=	erlang-p1_utils
 SUBDIR+=	esniper
+SUBDIR+=	exercism
 SUBDIR+=	fbreader
 SUBDIR+=	fd
 SUBDIR+=	fep
@@ -313,7 +314,6 @@ SUBDIR+=	rox-memo
 SUBDIR+=	rpm
 SUBDIR+=	ruby-ansi
 SUBDIR+=	ruby-args_parser
-SUBDIR+=	ruby-bundler
 SUBDIR+=	ruby-colorator
 SUBDIR+=	ruby-colorize
 SUBDIR+=	ruby-columnize
@@ -363,6 +363,7 @@ SUBDIR+=	sunwait
 SUBDIR+=	superkaramba
 SUBDIR+=	sweeper
 SUBDIR+=	sword
+SUBDIR+=	tagainijisho
 SUBDIR+=	tds
 SUBDIR+=	team
 SUBDIR+=	teseq

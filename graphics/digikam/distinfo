@@ -1,11 +1,6 @@
-$NetBSD: distinfo,v 1.54 2021/10/26 10:46:04 nia Exp $
+$NetBSD: distinfo,v 1.57 2023/03/16 08:35:43 wiz Exp $
 
-BLAKE2s (digikam-6.4.0-03/digikam-6.4.0.tar.xz) = d7f1acacbddabf567da723c743809ab516317a5557d3f457b98239d9ab5e4dbc
-SHA512 (digikam-6.4.0-03/digikam-6.4.0.tar.xz) = b3b5e9903538d110613aa872c9215f5e7c19f7520a2b9060c24e686f20f72075378b447239dd3e17cb8860cdd35c699399994199b848757f0497ad25a7805e42
-Size (digikam-6.4.0-03/digikam-6.4.0.tar.xz) = 340146992 bytes
-SHA1 (patch-core_dplugins_generic_view_presentation_opengl_presentationgl.cpp) = 5153f0f5f299f7a4e4400cf5241f849d29df07e6
-SHA1 (patch-core_libs_dimg_filters_curves_curveswidget.cpp) = f3b49dcae4c3339ff05eb3e59e234f3df9c2dd05
-SHA1 (patch-core_libs_dimg_filters_levels_histogrampainter.cpp) = 357fccdcf1616d96efa8e9eedde33aec70005d56
-SHA1 (patch-core_libs_facesengine_detection_opencvfacedetector.cpp) = e5c05583c31c4d0bfc9a2b7548a7131709a50f96
-SHA1 (patch-core_libs_facesengine_recognition_dlib-dnn_dnnface_dnn__base_cv__image.h) = e3164ad2cc91232abc36b66e56806ad4a0715ee6
-SHA1 (patch-core_libs_kmemoryinfo_libstatgrab_kmemoryinfo_backend.cpp) = d4e4bee19424ef0af3d399822b428b274114ba46
+BLAKE2s (digiKam-7.10.0.tar.xz) = 85438caa591ab967fab4d7897c6273ab62a04178fc48320018d7bd92192c1255
+SHA512 (digiKam-7.10.0.tar.xz) = 1a5f045161253d73c4012fa949ec718fcc6c6b292ee0557c8015bea81c95fa39d3034ad46a40fdb64221f59832dc8ecdc724e93929ad2c0e35cc51fc82d28f27
+Size (digiKam-7.10.0.tar.xz) = 349238192 bytes
+SHA1 (patch-core_dplugins_generic_tools_mediaserver_upnpsdk_Neptune_Source_Core_NptConfig.h) = 1bf94ffefb1d174422918d34131beb8e44b544c2

@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.69 2023/01/19 15:41:40 gdt Exp $
+# $NetBSD: Makefile,v 1.71 2023/03/16 07:53:35 adam Exp $
 
-DISTNAME=	ccache-4.7.4
-PKGREVISION=	2
+DISTNAME=	ccache-4.8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=ccache/}
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
@@ -13,7 +12,6 @@ HOMEPAGE=	https://ccache.dev/
 COMMENT=	Cache for C/C++ compilers
 LICENSE=	gnu-gpl-v3 AND modified-bsd AND public-domain AND zlib
 
-USE_CMAKE=	yes
 USE_LANGUAGES=	c99 c++17
 USE_TOOLS+=	perl:build pkg-config
 TEST_TARGET=	test
@@ -31,5 +29,6 @@ SUBST_MESSAGE.rubyver=	Fixing asciidoctor executable name.
 
 .include "../../archivers/zstd/buildlink3.mk"
 .include "../../databases/hiredis/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
 .include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

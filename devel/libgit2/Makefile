@@ -1,6 +1,7 @@
-# $NetBSD: Makefile,v 1.60 2023/01/25 13:44:47 taca Exp $
+# $NetBSD: Makefile,v 1.64 2023/03/02 08:34:23 wiz Exp $
 
 DISTNAME=	libgit2-1.5.1
+PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=libgit2/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -15,7 +16,8 @@ USE_TOOLS+=	pkg-config
 
 CMAKE_ARGS+=	-DREGEX_BACKEND="pcre2"
 
-PKGCONFIG_OVERRIDE+=	libgit2.pc.in
+PKGCONFIG_OVERRIDE+=		${CMAKE_BUILD_DIR}/libgit2.pc
+PKGCONFIG_OVERRIDE_STAGE=	pre-install
 
 do-test:
 	cd ${WRKSRC}/${CMAKE_BUILD_DIR} && ctest

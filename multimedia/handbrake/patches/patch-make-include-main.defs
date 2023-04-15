@@ -1,10 +1,11 @@
-$NetBSD: patch-make-include-main.defs,v 1.3 2022/10/03 10:46:05 adam Exp $
+$NetBSD: patch-make-include-main.defs,v 1.5 2023/04/09 11:15:50 plunky Exp $
 
-Use comon pkgsrc libraries
+Use comon pkgsrc libraries, except for libjpeg-turbo which is required but
+cannot coexist with libjpeg (required by gtk3)
 
---- make/include/main.defs.orig	2022-01-10 19:11:37.000000000 +0000
+--- make/include/main.defs.orig	2023-01-22 16:36:49.000000000 +0000
 +++ make/include/main.defs
-@@ -13,47 +13,10 @@ ifneq ($(HAS.bz2),1)
+@@ -13,49 +13,12 @@ ifneq ($(HAS.bz2),1)
  endif
  endif
  
@@ -27,10 +28,12 @@ Use comon pkgsrc libraries
 -endif
 -
 -ifeq (1,$(FEATURE.flatpak))
+-    MODULES += contrib/libass
 -    MODULES += contrib/jansson
 -    MODULES += contrib/x264
 -endif
--
++MODULES += contrib/libjpeg-turbo
+ 
  ifeq (1,$(FEATURE.fdk_aac))
      MODULES += contrib/fdk-aac
  endif
@@ -43,6 +46,7 @@ Use comon pkgsrc libraries
 -endif
 -
 -MODULES += contrib/libdav1d
+-MODULES += contrib/svt-av1
 -MODULES += contrib/zimg
 -MODULES += contrib/ffmpeg
 -MODULES += contrib/libdvdread

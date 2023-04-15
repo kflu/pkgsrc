@@ -1,6 +1,6 @@
-$NetBSD: distinfo,v 1.21 2023/01/03 17:01:26 ryoon Exp $
+$NetBSD: distinfo,v 1.23 2023/03/29 11:34:09 wiz Exp $
 
-BLAKE2s (libva-2.16.0.tar.bz2) = 906dfd5f94a3839e64be15e9b30ca75b678b0c09ab9722674e4a5f551b9a3977
-SHA512 (libva-2.16.0.tar.bz2) = 9d34d6cbca340477bd06cabdb5b812fff17a25146815c7f4c2e96f8589daf62a0de1981d0f141ef6b082534dee7fc1f06023b542ca092a106412089659bfb564
-Size (libva-2.16.0.tar.bz2) = 504269 bytes
-SHA1 (patch-va_drm_va__drm__utils.c) = 5a269316c42ea12afef83636947700d972900fbe
+BLAKE2s (libva-2.18.0.tar.bz2) = 341cf542402805e320ed868a02b3c24403d1fd32bf6239e319568c2ccdbc6df5
+SHA512 (libva-2.18.0.tar.bz2) = 739c7a94815afea14eedfe2fe494580f187360f434426c4aba7cb5833969686a1627276b862a966539a285572110649224a91f62a6d35eac5e1e77e2a6a985b0
+Size (libva-2.18.0.tar.bz2) = 507690 bytes
+SHA1 (patch-va_x11_dri2__util.c) = 6b77b7246f235d106e1fff3c83be564d2a0d0c5c

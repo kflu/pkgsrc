@@ -1,7 +1,6 @@
-# $NetBSD: Makefile,v 1.90 2023/01/09 23:29:24 sekiya Exp $
+# $NetBSD: Makefile,v 1.99 2023/04/13 18:34:08 wiz Exp $
 
-DISTNAME=		a2ps-4.14
-PKGREVISION=		15
+DISTNAME=		a2ps-4.15.4
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_GNU:=a2ps/}
 
@@ -12,36 +11,39 @@ LICENSE=		gnu-gpl-v3
 
 DEPENDS+=		psutils>=1.17:../../print/psutils
 
-STRIP=			# empty
-
 USE_LIBTOOL=		yes
+USE_PKGLOCALEDIR=	yes
+USE_TOOLS+=		file:run gmake lex mktemp:run perl:run pkg-config
 
-.include "../../mk/bsd.prefs.mk"
-
-CFLAGS.Darwin+=		-flat_namespace
-
-BUILD_DEFS+=		PAPERSIZE
-
-USE_TOOLS+=		file:run gmake lex mktemp:run perl:run
+GNU_CONFIGURE=		yes
+CONFIGURE_ENV+=		LPR=lpr
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	ac_cv_prog_EMACS=no
 CONFIGURE_ENV+=		file_prog=${FILE_CMD:Q}
 
-USE_PKGLOCALEDIR=	YES
-GNU_CONFIGURE=		YES
-CONFIGURE_ENV+=		LPR=lpr
-CONFIGURE_ARGS+=	--with-medium=${PAPERSIZE:Q}
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
-CONFIGURE_ARGS+=	--disable-dependency-tracking
-CONFIGURE_ARGS+=	ac_cv_prog_EMACS=no
+INFO_FILES=		yes
+
+CFLAGS.Darwin+=		-flat_namespace
 
 EGDIR=			${PREFIX}/share/examples/a2ps
 CONF_FILES=		${EGDIR}/a2ps-site.cfg ${PKG_SYSCONFDIR}/a2ps-site.cfg
 CONF_FILES+=		${EGDIR}/a2ps.cfg ${PKG_SYSCONFDIR}/a2ps.cfg
-INFO_FILES=		yes
+
+REPLACE_SH+=		contrib/[a-z]*.in
+
+INSTALLATION_DIRS=	share/examples/a2ps
+
+TEST_TARGET=		check
 
 pre-build:
 	${TOUCH} ${WRKSRC}/doc/*.info
 	${TOUCH} ${WRKSRC}/doc/*.dvi
 
+post-install:
+	cd ${DESTDIR}${PKG_SYSCONFDIR} && ${MV} a2ps-site.cfg a2ps.cfg ${DESTDIR}${PREFIX}/share/examples/a2ps
+
 .include "../../devel/gettext-lib/buildlink3.mk"
+.include "../../devel/boehm-gc/buildlink3.mk"
 .include "../../devel/gperf/buildlink3.mk"
+.include "../../print/libpaper/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

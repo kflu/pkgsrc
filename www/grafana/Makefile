@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.92 2023/02/09 09:44:08 triaxx Exp $
+# $NetBSD: Makefile,v 1.99 2023/04/12 19:26:27 adam Exp $
 
-DISTNAME=	grafana-9.3.6
+DISTNAME=	grafana-9.4.7
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grafana/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -83,6 +83,7 @@ do-build:
 	cd ${WRKSRC} && ${PKGSRC_SETENV} ${MAKE_ENV} ${GO} run build.go build
 
 do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/bin/*/grafana ${DESTDIR}${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/*/grafana-cli ${DESTDIR}${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/*/grafana-server ${DESTDIR}${PREFIX}/bin/
 	cd ${WRKDIR}/linux/${DISTNAME}/public && \

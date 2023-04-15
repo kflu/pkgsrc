@@ -1,9 +1,10 @@
-# $NetBSD: Makefile,v 1.165 2023/02/01 15:27:00 gdt Exp $
+# $NetBSD: Makefile,v 1.170 2023/04/03 20:21:02 nros Exp $
 
 # This is intentionally 3.28 Long Term Release.  Please do not update
 # to later branches, and instead discuss whether/how we want multiple
 # versions.
-DISTNAME=	qgis-3.28.3
+DISTNAME=	qgis-3.28.4
+PKGREVISION=	2
 CATEGORIES=	geography
 MASTER_SITES=	https://qgis.org/downloads/
 EXTRACT_SUFX=	.tar.bz2
@@ -41,8 +42,7 @@ CMAKE_PREFIX_PATH+=	${QTDIR}
 # This could be used if we want to build pdf doc, which is currently false
 #BUILD_DEPENDS+=	txt2tags-[0-9]*:../../wip/txt2tags
 
-# Disable building of QGIS.app
-# (XXX For now, we might want to find a way to do this later.)
+# Disable building of QGIS.app.  \todo Consider building it.
 SUBST_CLASSES+=			xapple
 SUBST_STAGE.xapple=		pre-configure
 SUBST_MESSAGE.xapple=		Disabling APPLE App in cmake scripts
@@ -66,6 +66,9 @@ CMAKE_ARGS+=		-DWITH_INTERNAL_MARKUPSAFE=FALSE
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27 37 # py-gdal
 
+# \todo Consider (optional?) dependency on GRASS.
+# \todo Consider (optional?) dependency on SAGA.
+
 DEPENDS+=	${PYPKGPREFIX}-requests-[0-9]*:../../devel/py-requests
 DEPENDS+=	${PYPKGPREFIX}-psycopg2-[0-9]*:../../databases/py-psycopg2
 DEPENDS+=	${PYPKGPREFIX}-gdal-[0-9]*:../../geography/py-gdal
@@ -74,7 +77,7 @@ DEPENDS+=	${PYPKGPREFIX}-markupsafe-[0-9]*:../../textproc/py-markupsafe
 # for quickosm
 DEPENDS+=	${PYPKGPREFIX}-yaml-[0-9]*:../../textproc/py-yaml
 # for metasearch
-#DEPENDS+=	${PYPKGPREFIX}-wip-[0-9]*:../../wip/py-owslib
+DEPENDS+=	${PYPKGPREFIX}-owslib-[0-9]*:../../geography/py-owslib
 
 CMAKE_ARGS+=	-DWITH_QTWEBKIT=FALSE
 CMAKE_ARGS+=	-DQWT_DIR=${QWT_DIR}

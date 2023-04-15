@@ -1,0 +1,24 @@
+$NetBSD: patch-etc_Makefile.am,v 1.1 2023/02/21 17:23:07 adam Exp $
+
+Disable installation of config file, because pkgsrc installs config
+files as examples.
+
+--- etc/Makefile.am.orig	2018-09-13 11:47:21.000000000 +0000
++++ etc/Makefile.am
+@@ -30,16 +30,6 @@ opensc.conf.example: opensc.conf.example
+ 		-e 's|@PROFILE_DIR_DEFAULT[@]|$(PROFILE_DIR_DEFAULT)|g' \
+ 		< $< > $@
+ 
+-install-exec-hook: opensc.conf.example
+-	$(MKDIR_P) "$(DESTDIR)$(sysconfdir)"
+-	if [ -f "$(DESTDIR)$(sysconfdir)/opensc.conf" ]; then \
+-		$(INSTALL_DATA) $(srcdir)/opensc.conf "$(DESTDIR)$(sysconfdir)/opensc.conf.new"; \
+-	else \
+-		$(INSTALL_DATA) $(srcdir)/opensc.conf "$(DESTDIR)$(sysconfdir)/opensc.conf"; \
+-	fi
+-	$(MKDIR_P) "$(DESTDIR)$(docdir)"
+-	$(INSTALL_DATA) opensc.conf.example "$(DESTDIR)$(docdir)/opensc.conf";
+-
+ uninstall-hook: opensc.conf.example
+ 	rm -f "$(DESTDIR)$(sysconfdir)/opensc.conf.new" "$(DESTDIR)$(sysconfdir)/opensc.conf"
+ 	rm -f "$(DESTDIR)$(docdir)/opensc.conf"

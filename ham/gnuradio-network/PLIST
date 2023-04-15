@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.6 2022/05/26 15:20:09 mef Exp $
+@comment $NetBSD: PLIST,v 1.8 2023/04/11 11:20:51 mef Exp $
 include/gnuradio/network/api.h
 include/gnuradio/network/packet_headers.h
 include/gnuradio/network/socket_pdu.h
@@ -39,4 +39,3 @@ share/gnuradio/grc/blocks/network_tcp_source.block.yml
 share/gnuradio/grc/blocks/network_tuntap_pdu.block.yml
 share/gnuradio/grc/blocks/network_udp_sink.block.yml
 share/gnuradio/grc/blocks/network_udp_source.block.yml
-

@@ -25,10 +25,13 @@ func (ck *MkAssignChecker) check() {
 // checkLeft checks everything to the left of the assignment operator.
 func (ck *MkAssignChecker) checkLeft() {
 	varname := ck.MkLine.Varname()
-	if !ck.mayBeDefined(varname) {
+	if G.Pkgsrc != nil && !ck.mayBeDefined(varname) {
 		ck.MkLine.Warnf("Variable names starting with an underscore (%s) are reserved for internal pkgsrc use.", varname)
 	}
 
+	if G.Pkgsrc == nil {
+		goto checkVarUse
+	}
 	ck.checkLeftNotUsed()
 	ck.checkLeftOpsys()
 	ck.checkLeftDeprecated()
@@ -39,6 +42,7 @@ func (ck *MkAssignChecker) checkLeft() {
 	}
 	ck.checkLeftRationale()
 
+checkVarUse:
 	NewMkLineChecker(ck.MkLines, ck.MkLine).checkTextVarUse(
 		varname,
 		NewVartype(BtVariableName, NoVartypeOptions, NewACLEntry("*", aclpAll)),
@@ -68,13 +72,12 @@ func (ck *MkAssignChecker) checkLeftNotUsed() {
 		return
 	}
 
-	vartypes := G.Pkgsrc.vartypes
+	vartypes := G.Project.Types()
 	if vartypes.IsDefinedExact(varname) || vartypes.IsDefinedExact(varcanon) {
 		return
 	}
 
-	deprecated := G.Pkgsrc.Deprecated
-	if deprecated[varname] != "" || deprecated[varcanon] != "" {
+	if G.Project.Deprecated(varname) != "" {
 		return
 	}
 
@@ -121,11 +124,8 @@ func (ck *MkAssignChecker) checkLeftOpsys() {
 }
 
 func (ck *MkAssignChecker) checkLeftDeprecated() {
-	varname := ck.MkLine.Varname()
-	if fix := G.Pkgsrc.Deprecated[varname]; fix != "" {
-		ck.MkLine.Warnf("Definition of %s is deprecated. %s", varname, fix)
-	} else if fix = G.Pkgsrc.Deprecated[varnameCanon(varname)]; fix != "" {
-		ck.MkLine.Warnf("Definition of %s is deprecated. %s", varname, fix)
+	if instead := G.Project.Deprecated(ck.MkLine.Varname()); instead != "" {
+		ck.MkLine.Warnf("Definition of %s is deprecated. %s", ck.MkLine.Varname(), instead)
 	}
 }
 
@@ -699,7 +699,7 @@ func (ck *MkAssignChecker) mayBeDefined(varname string) bool {
 	if G.Infrastructure {
 		return true
 	}
-	if G.Pkgsrc.vartypes.Canon(varname) != nil {
+	if G.Pkgsrc.Types().Canon(varname) != nil {
 		return true
 	}
 

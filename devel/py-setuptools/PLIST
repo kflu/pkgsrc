@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.76 2023/02/08 10:16:43 adam Exp $
+@comment $NetBSD: PLIST,v 1.78 2023/04/04 15:03:50 adam Exp $
 ${PYSITELIB}/${EGG_INFODIR}/PKG-INFO
 ${PYSITELIB}/${EGG_INFODIR}/SOURCES.txt
 ${PYSITELIB}/${EGG_INFODIR}/dependency_links.txt
@@ -327,6 +327,9 @@ ${PYSITELIB}/setuptools/_importlib.pyo
 ${PYSITELIB}/setuptools/_itertools.py
 ${PYSITELIB}/setuptools/_itertools.pyc
 ${PYSITELIB}/setuptools/_itertools.pyo
+${PYSITELIB}/setuptools/_normalization.py
+${PYSITELIB}/setuptools/_normalization.pyc
+${PYSITELIB}/setuptools/_normalization.pyo
 ${PYSITELIB}/setuptools/_path.py
 ${PYSITELIB}/setuptools/_path.pyc
 ${PYSITELIB}/setuptools/_path.pyo
@@ -357,6 +360,9 @@ ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_itertools.pyo
 ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_meta.py
 ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_meta.pyc
 ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_meta.pyo
+${PYSITELIB}/setuptools/_vendor/importlib_metadata/_py39compat.py
+${PYSITELIB}/setuptools/_vendor/importlib_metadata/_py39compat.pyc
+${PYSITELIB}/setuptools/_vendor/importlib_metadata/_py39compat.pyo
 ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_text.py
 ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_text.pyc
 ${PYSITELIB}/setuptools/_vendor/importlib_metadata/_text.pyo

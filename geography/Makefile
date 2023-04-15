@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.120 2022/11/26 15:09:46 gdt Exp $
+# $NetBSD: Makefile,v 1.124 2023/04/10 09:46:34 nros Exp $
 #
 
 COMMENT=	Software for geographical-related uses
@@ -59,6 +59,7 @@ SUBDIR+=	libgeotiff
 SUBDIR+=	libmaxminddb
 SUBDIR+=	libmemphis02
 SUBDIR+=	libnova
+SUBDIR+=	librttopo
 SUBDIR+=	libspatialite
 SUBDIR+=	lua-mmdb
 SUBDIR+=	mapcode
@@ -95,10 +96,13 @@ SUBDIR+=	py-geojson
 SUBDIR+=	py-googlemaps
 SUBDIR+=	py-maxminddb
 SUBDIR+=	py-obspy
+SUBDIR+=	py-owslib
 SUBDIR+=	py-proj
 SUBDIR+=	py-trytond-country
 SUBDIR+=	py-trytond-google-maps
 SUBDIR+=	qgis
+SUBDIR+=	qt6-qtlocation
+SUBDIR+=	qt6-qtpositioning
 SUBDIR+=	shapelib
 SUBDIR+=	spatialindex
 SUBDIR+=	tex-pst-geo

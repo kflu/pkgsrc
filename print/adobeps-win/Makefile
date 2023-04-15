@@ -1,22 +1,22 @@
-# $NetBSD: Makefile,v 1.17 2017/08/01 17:40:15 wiz Exp $
+# $NetBSD: Makefile,v 1.19 2023/02/26 06:43:00 wiz Exp $
 
 DISTNAME=	winsteng
 PKGNAME=	adobeps-win-1.0.6
 PKGREVISION=	5
 CATEGORIES=	print
 MASTER_SITES=	ftp://ftp.adobe.com/pub/adobe/printerdrivers/win/1.x/
+DIST_SUBDIR=	${PKGNAME_NOREV}
 EXTRACT_SUFX=	.exe
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 #HOMEPAGE=	http://www.adobe.com/products/printerdrivers/windows.html
 COMMENT=	Adobe PostScript MS Windows drivers for CUPS/Samba
 
-BUILD_DEPENDS+=	cabextract-[0-9]*:../../archivers/cabextract
+TOOL_DEPENDS+=	cabextract-[0-9]*:../../archivers/cabextract
 DEPENDS+=	cups>=1.1.15:../../print/cups
 
-DIST_SUBDIR=	${PKGNAME_NOREV}
 WRKSRC=		${WRKDIR}
-EXTRACT_CMD=	${LOCALBASE}/bin/cabextract $$extract_file
+EXTRACT_CMD=	${PREFIX}/bin/cabextract $$extract_file
 NO_CONFIGURE=	yes
 NO_BUILD=	yes
 

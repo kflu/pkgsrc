@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.396 2023/01/09 21:58:07 nikita Exp $
+# $NetBSD: Makefile,v 1.405 2023/04/11 01:45:10 markd Exp $
 #
 
 COMMENT=	Fonts
@@ -32,6 +32,7 @@ SUBDIR+=	afm2pl
 SUBDIR+=	akkadian-ttf
 SUBDIR+=	alee-ttf
 SUBDIR+=	altmeister-otf
+SUBDIR+=	amiri-ttf
 SUBDIR+=	anatolian-ttf
 SUBDIR+=	anjalioldlipi-ttf
 SUBDIR+=	arphic-ttf
@@ -117,7 +118,10 @@ SUBDIR+=	freefont-ttf
 SUBDIR+=	freefonts
 SUBDIR+=	gbdfed
 SUBDIR+=	gentium-ttf
+SUBDIR+=	gentiumbasic-ttf
+SUBDIR+=	gentiumplus-ttf
 SUBDIR+=	geoslab703-ttf
+SUBDIR+=	gerb
 SUBDIR+=	ghostscript-cidfonts
 SUBDIR+=	ghostscript-cidfonts-ryumin
 SUBDIR+=	ghostscript-cmaps
@@ -173,6 +177,7 @@ SUBDIR+=	lanna-io
 SUBDIR+=	lato-ttf
 SUBDIR+=	lcdftypetools
 SUBDIR+=	liberation-ttf
+SUBDIR+=	libertinus-ttf
 SUBDIR+=	libfontenc
 SUBDIR+=	linux-libertine-ttf
 SUBDIR+=	lohit-fonts
@@ -205,6 +210,9 @@ SUBDIR+=	nerd-fonts-BitstreamVeraSansMono
 SUBDIR+=	nerd-fonts-CascadiaCode
 SUBDIR+=	nerd-fonts-CodeNewRoman
 SUBDIR+=	nerd-fonts-Cousine
+SUBDIR+=	nerd-fonts-DaddyTimeMono
+SUBDIR+=	nerd-fonts-IBMPlexMono
+SUBDIR+=	nerd-fonts-iA-Writer
 SUBDIR+=	neumeister-otf
 SUBDIR+=	noto-cjk-fonts
 SUBDIR+=	noto-emoji-ttf
@@ -510,6 +518,8 @@ SUBDIR+=	tex-euro-ce-doc
 SUBDIR+=	tex-eurosym
 SUBDIR+=	tex-eurosym-doc
 SUBDIR+=	tex-euxm
+SUBDIR+=	tex-evangelion-jfm
+SUBDIR+=	tex-evangelion-jfm-doc
 SUBDIR+=	tex-fandol
 SUBDIR+=	tex-fandol-doc
 SUBDIR+=	tex-fbb

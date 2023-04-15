@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.5 2023/01/16 18:37:25 schmonz Exp $
+# $NetBSD: Makefile,v 1.9 2023/04/11 15:36:09 schmonz Exp $
 
-DISTNAME=	approval_utilities-8.1.0
+DISTNAME=	approval_utilities-8.2.5
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/_/-/}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=a/approval_utilities/}
@@ -16,11 +16,6 @@ DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.6.2:../../devel/py-typing-extensio
 USE_LANGUAGES=	# none
 
 PYTHON_VERSIONS_INCOMPATIBLE=	27
-
-PYSETUP=	setup.approval_utilities.py
-
-post-extract:
-	${ECHO} "version_number = \"v${PKGVERSION_NOREV}\"" > ${WRKSRC}/approval_utilities/version.py
 
 .include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

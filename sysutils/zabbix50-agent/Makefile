@@ -1,11 +1,13 @@
-# $NetBSD: Makefile,v 1.14 2023/01/03 13:59:14 otis Exp $
+# $NetBSD: Makefile,v 1.18 2023/02/20 10:10:41 otis Exp $
 
+PKGREVISION= 1
 .include "../../sysutils/zabbix50-server/Makefile.common"
 
 PKGNAME=	${DISTNAME:S/-/-agent-/}
 COMMENT=	Enterprise-class Monitoring Solution for Everyone
 
 PATCHDIR=	${.CURDIR}/../../sysutils/zabbix50-server/patches
+DISTINFO_FILE=	${.CURDIR}/../../sysutils/zabbix50-server/distinfo
 
 CONFLICTS+=	zabbix-[0-9]*
 CONFLICTS+=	zabbix-agent-[0-9]*
@@ -23,6 +25,7 @@ EGDIR=		share/examples/${PKGBASE}
 CONF_FILES+=	${EGDIR}/zabbix_agentd.conf ${PKG_SYSCONFDIR}/zabbix_agentd.conf
 
 RCD_SCRIPTS=	zabbix_agentd
+SMF_NAME=	zabbix-agent
 
 INSTALLATION_DIRS+=	${EGDIR} share/${PKGBASE}
 

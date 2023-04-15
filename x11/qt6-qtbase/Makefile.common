@@ -1,9 +1,12 @@
-# $NetBSD: Makefile.common,v 1.26 2023/01/08 08:13:31 tsutsui Exp $
+# $NetBSD: Makefile.common,v 1.32 2023/04/10 09:46:34 nros Exp $
+# used by x11/qt6-qtserialport/Makefile
 # used by audio/qt6-qtspeech/Makefile
 # used by databases/qt6-odbc/Makefile
 # used by databases/qt6-psql/Makefile
 # used by devel/qt6-qt5compat/Makefile
 # used by devel/qt6-qttools/Makefile
+# used by geography/qt6-qtlocation/Makefile
+# used by geography/qt6-qtpositioning/Makefile
 # used by graphics/qt6-qt3d/Makefile
 # used by graphics/qt6-qtcharts/Makefile
 # used by graphics/qt6-qtdatavis3d/Makefile
@@ -17,6 +20,7 @@
 # used by lang/qt6-qtlanguageserver/Makefile
 # used by lang/qt6-qtscxml/Makefile
 # used by multimedia/qt6-qtmultimedia/Makefile
+# used by net/qt6-qtgrpc/Makefile
 # used by net/qt6-qtremoteobjects/Makefile
 # used by net/qt6-qtwebsockets/Makefile
 # used by security/qt6-qtnetworkauth/Makefile
@@ -31,6 +35,7 @@ BUILDLINK_TRANSFORM+=	opt:-ldl:${BUILDLINK_LDADD.dl:Q}
 
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		cmake gmake perl:build pkg-config
+#TOOL_DEPENDS+=		ninja-build-[0-9]*:../../devel/ninja-build
 
 # https://doc.qt.io/qt-6/supported-platforms.html
 GCC_REQD+=		9
@@ -67,14 +72,18 @@ PLIST.notdarwin=	yes
 # some libs also link to libs in lib so
 # this is needed by some ld:s to not
 # cause linking errors.
+.if ${OPSYS} == "Darwin"
+MAKE_ENV+=		DYLD_LIBRARY_PATH=${WRKSRC}/lib
+.else
 MAKE_ENV+=		LD_LIBRARY_PATH=${WRKSRC}/lib
+.endif
 
 
 # avoid creating a .qt directory in the users home directory
 SCRIPTS_ENV+=		HOME=${WRKDIR}
 
 .if "${PKGPATH}" != "x11/qt6-qtbase"
-CONFIGURE_ARGS+=	-cmake-use-default-generator
+#CONFIGURE_ARGS+=	-cmake-use-default-generator
 .  if ${OPSYS} != "Darwin"
 CONFIGURE_ARGS+=	-- -DCMAKE_SKIP_RPATH:BOOL=TRUE
 .  endif
@@ -82,6 +91,10 @@ QTCONFDIR?=		.
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${QTPREFIX}/bin/qt-configure-module ${QTCONFDIR} ${CONFIGURE_ARGS}
 .endif
+
+#do-build:
+#	cd ${WRKSRC}/${QTCONFDIR} && ${SETENV} ${MAKE_ENV} ninja
+
 
 .if ${OPSYS} == "Darwin"
 .PHONY: fix-darwin-install-name

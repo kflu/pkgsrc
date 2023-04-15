@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.1 2023/01/09 17:48:34 nikita Exp $
+# $NetBSD: Makefile,v 1.3 2023/03/31 15:19:29 nikita Exp $
 
-DISTNAME=	stylua-0.15.3
+DISTNAME=	stylua-0.17.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GITHUB:=JohnnyMorganz/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}

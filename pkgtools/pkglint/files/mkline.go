@@ -1305,6 +1305,9 @@ func (ind *Indentation) TrackAfter(mkline *MkLine) {
 
 		ind.RememberUsedVariables(cond)
 
+		if G.Pkgsrc == nil {
+			break
+		}
 		cond.Walk(&MkCondCallback{
 			Call: func(name string, arg string) {
 				if name == "exists" && !NewPath(arg).IsAbs() {
@@ -1339,8 +1342,7 @@ func (ind *Indentation) CheckFinish(filename CurrPath) {
 // which would confuse the devel/bmake parser.
 //
 // TODO: The allowed characters differ between the basename and the parameter
-//
-//	of the variable. The square bracket is only allowed in the parameter part.
+// of the variable. The square bracket is only allowed in the parameter part.
 var (
 	// TODO: remove the ','
 	VarbaseBytes = textproc.NewByteSet("A-Za-z_0-9-+,")

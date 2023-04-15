@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.58 2023/01/11 17:28:37 bsiegert Exp $
+# $NetBSD: Makefile,v 1.61 2023/04/05 20:47:52 bsiegert Exp $
 
 DISTNAME=		pup-0.4.0
-PKGREVISION=		52
+PKGREVISION=		55
 CATEGORIES=		www
 MASTER_SITES=		${MASTER_SITE_GITHUB:=ericchiang/}
 GITHUB_TAG=		v${PKGVERSION_NOREV}

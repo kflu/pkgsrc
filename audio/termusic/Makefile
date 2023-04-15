@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.46 2023/01/23 21:13:00 pin Exp $
+# $NetBSD: Makefile,v 1.49 2023/04/10 15:19:29 pin Exp $
 
-DISTNAME=	termusic-0.7.8
+DISTNAME=	termusic-0.7.10
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GITHUB:=tramhao/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
-MAINTAINER=	pin@NetBSD.org
+MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://github.com/tramhao/termusic/
 COMMENT=	Music Player TUI written in Rust
 LICENSE=	mit AND gnu-gpl-v3

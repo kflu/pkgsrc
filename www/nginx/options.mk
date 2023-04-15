@@ -1,4 +1,4 @@
-# $NetBSD: options.mk,v 1.88 2022/11/17 16:04:27 osa Exp $
+# $NetBSD: options.mk,v 1.90 2023/04/13 16:45:47 osa Exp $
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.nginx
 PKG_SUPPORTED_OPTIONS=	array-var auth-request cache-purge dav debug
@@ -166,6 +166,8 @@ LUA_DISTFILE=		${LUA_DISTNAME}.tar.gz
 SITES.${LUA_DISTFILE}=	-${MASTER_SITE_GITHUB:=openresty/lua-nginx-module/archive/}v${LUA_VERSION}.tar.gz
 DISTFILES+=		${LUA_DISTFILE}
 .include "../../lang/LuaJIT2/buildlink3.mk"
+DEPENDS+=		lua-resty-core>=0.1.26:../../www/lua-resty-core
+DEPENDS+=		lua-resty-lrucache>=0.13:../../www/lua-resty-lrucache
 CONFIGURE_ENV+=		LUAJIT_LIB=${PREFIX}/lib
 CONFIGURE_ENV+=		LUAJIT_INC=${PREFIX}/include/luajit-2.0
 DSO_EXTMODS+=		lua
@@ -328,10 +330,10 @@ PLIST.rtmp=		yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mnjs) || make(makesum) || make(mdi) || make(distclean)
-NJS_VERSION=		0.7.9
+NJS_VERSION=		0.7.12
 NJS_DISTNAME=		njs-${NJS_VERSION}
 NJS_DISTFILE=		${NJS_DISTNAME}.tar.gz
-NJS_CONFIGURE_ARGS=	--no-pcre2
+NJS_CONFIGURE_ARGS=	--no-libxml2 --no-pcre2 
 SITES.${NJS_DISTFILE}=	-${MASTER_SITE_GITHUB:=nginx/njs/archive/}${NJS_VERSION}.tar.gz
 DISTFILES+=		${NJS_DISTFILE}
 DSO_EXTMODS+=		njs

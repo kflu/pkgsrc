@@ -72,8 +72,8 @@ bittorrent		Enable bittorrent support.
 blacklist		Enable blacklist support.
 blender-exppython	Enable the Experimental Python support.
 blocklist		Enable blocklist support.
-bluray			Enable libbluray support.
 bluez			Enable bluetooth support via bluez for Linux.
+bluray			Enable libbluray support.
 boehm-gc		Use Boehm's garbage collector for memory allocation.
 bozohttpd-do-htpasswd	Enable .htpasswd file processing in bozohttpd.
 brotli			Provides the BROTLI_COMPRESS output filter.
@@ -101,6 +101,9 @@ chasen			Use ChaSen as the Japanese Morphological Analzer.
 chromaprint		Enable chromaprint (audio fingerprinting) support.
 cjk			Enable Chinese/Japanese/Korean support.
 clamav			Enable ClamAV support.
+clamav-experimental	Build with experimental functions.
+clamav-milter		Build with milter support.
+clamav-unit-test	Build with unit test support.
 claws-mail-jpilot	Add jpilot support.
 cli			Enable Command Line Interface support.
 clisp			Common/C Lisp.
@@ -132,12 +135,12 @@ dante                   Enable Dante support.
 dar-int32		Use 32-bit integers for file lengths in Dar.
 dar-int64		Use 64-bit integers for file lengths in Dar.
 darwin			Build and/or run on Darwin and Mac OS X.
-dca			Enable DTS Coherent Acoustics support using libdca.
 db2			Enable db2 support.
 db4			Enable db4 support.
 dbh			Enable DBH support.
 dblatex-fig		Enable fig support in dblatex.
 dbus			Enable dbus (desktop bus) support.
+dca			Enable DTS Coherent Acoustics support using libdca.
 debug			Enable debugging facilities in the package.
 debug-info		Enable debug info in generated binaries (e.g. for crash analysis), but not full scale debugging.
 deliver-suid		Install deliver executable setuid root.
@@ -504,6 +507,7 @@ libmtp			Enable MTP via libmtp support.
 libnotify		Enable libnotify support.
 libofa			Enable Open Fingerprint Architecture library support.
 libofx			Enable OFX support.
+libotf			Enable libotf support.
 libpcap			Enable libpcap support.
 libsmi			Use libsmi for SMI MIB support.
 libsoup			Use libsoup for SOUP support.
@@ -635,7 +639,6 @@ nextstep		Enable Cocoa or GNUstep support.
 nfdump-ftconv		Build the flow-tools to nfdump converter.
 nfdump-nfprofile	Build the netflow profiler.
 nfdump-sflow		Build sflow collector sfcpad.
-nghttp2-asio		Build the nghttp2 ASIO C++ library.
 nghttp2-tools		Build the supplied nghttp2 apps and tools.
 nginx			Enable support for Nginx web server.
 ninja-build		Enable build by ninja-build.
@@ -747,6 +750,7 @@ quartz			Enable Quartz support on Mac OS X.
 quickml-analog		Enable quickml log analizer.
 quickml-limit		Enable quickml creators and members limitation.
 rar			Support RAR archive files.
+rav1e			Enable AV1 encoding support using rav1e.
 rc5			Support the hashing algorithm RC5.
 readline		Enable use of GNU readline library.
 redis			Support the Redis database.
@@ -762,6 +766,7 @@ rtree			Enable R-tree support.
 ruby			Enable Ruby support.
 ruby-build-ri-db	Build and install database for Ruby's ri utility.
 ruby-unicorn		Enable unicorn support.
+ruby-yjit		Enable  in-process JIT compiler (require Rust).
 rust			Enable Rust support.
 rust-cargo-static	Build cargo semi-statically with built-in curl+openssl
 rust-internal-llvm	Use Rust internal LLVM in builds.

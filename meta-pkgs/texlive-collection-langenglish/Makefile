@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.18 2022/05/01 20:41:18 markd Exp $
+# $NetBSD: Makefile,v 1.20 2023/04/11 03:26:23 markd Exp $
 
 DISTNAME=	collection-langenglish
-PKGNAME=	texlive-${DISTNAME}-2022
+PKGNAME=	texlive-${DISTNAME}-2023
 CATEGORIES=	meta-pkgs
 MASTER_SITES=	# empty
-TEXLIVE_REV=	63184
+TEXLIVE_REV=	65496
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://www.tug.org/texlive/
@@ -74,6 +74,7 @@ DEPENDS+=	tex-latexfileinfo-pkgs-[0-9]*:../../print/tex-latexfileinfo-pkgs
 # texonly is documentation only
 # titlepages is documentation only
 # tlc2 is documentation only
+# tlc3-examples is documentation only
 # tlmgrbasics is documentation only
 # undergradmath is documentation only
 # visualfaq is documentation only

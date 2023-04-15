@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.315 2023/01/31 16:02:36 wiz Exp $
+# $NetBSD: Makefile,v 1.317 2023/04/09 07:07:44 wiz Exp $
 
 .include "Makefile.common"
 
@@ -33,7 +33,7 @@ TEST_TARGET=		check
 
 .include "options.mk"
 
-.if !empty(MACHINE_PLATFORM:MNetBSD-*-sparc64)
+.if ${MACHINE_PLATFORM:MNetBSD-*-sparc64}
 GCC_REQD+=		3.0
 .endif
 

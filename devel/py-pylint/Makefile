@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.79 2023/02/03 13:09:46 adam Exp $
+# $NetBSD: Makefile,v 1.83 2023/04/05 11:21:05 adam Exp $
 
-DISTNAME=	pylint-2.16.1
+DISTNAME=	pylint-2.17.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pylint/}
@@ -11,7 +11,7 @@ COMMENT=	Python source code analyzer
 LICENSE=	gnu-gpl-v2
 
 TOOL_DEPENDS+=	${PYPKGPREFIX}-wheel>=0.37.1:../../devel/py-wheel
-DEPENDS+=	${PYPKGPREFIX}-astroid>=2.14.1:../../devel/py-astroid
+DEPENDS+=	${PYPKGPREFIX}-astroid>=2.15.2:../../devel/py-astroid
 DEPENDS+=	${PYPKGPREFIX}-dill>=0.3.6:../../textproc/py-dill
 DEPENDS+=	${PYPKGPREFIX}-isort>=4.2.5:../../devel/py-isort
 DEPENDS+=	${PYPKGPREFIX}-mccabe>=0.6:../../devel/py-mccabe
@@ -23,10 +23,10 @@ USE_LANGUAGES=	# none
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/pyversion.mk"
-.if ${_PYTHON_VERSION} == 39 || ${_PYTHON_VERSION} == 38
+.if ${PYTHON_VERSION} < 310
 DEPENDS+=	${PYPKGPREFIX}-typing-extensions>=3.10.0:../../devel/py-typing-extensions
 .endif
-.if ${_PYTHON_VERSION} == 310 || ${_PYTHON_VERSION} == 39 || ${_PYTHON_VERSION} == 38
+.if ${PYTHON_VERSION} < 311
 DEPENDS+=	${PYPKGPREFIX}-tomli>=1.1.0:../../textproc/py-tomli
 .endif
 

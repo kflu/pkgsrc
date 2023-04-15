@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.43 2022/11/30 19:54:59 adam Exp $
+# $NetBSD: Makefile,v 1.45 2023/02/15 08:04:42 he Exp $
 
 .include "../../lang/llvm/version.mk"
 
@@ -76,11 +76,14 @@ PKG_FAIL_REASON+=	"Only NetBSD >= 9.99.22 provides ptrace(2) PT_STOP"
 .  endif
 .endif
 
+# Not yet ported, so avoid wasting time trying...
+NOT_FOR_PLATFORM+=	NetBSD-*-powerpc
+
 post-extract:
 	${MKDIR} ${WRKSRC}/build
 
 #.include "../../devel/googletest/buildlink3.mk" # check-lldb-unit
-.include "../../devel/libatomic_ops/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../lang/clang/buildlink3.mk"
 .include "../../lang/llvm/buildlink3.mk"

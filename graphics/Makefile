@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.1002 2023/01/31 13:07:26 wiz Exp $
+# $NetBSD: Makefile,v 1.1008 2023/04/11 02:29:58 markd Exp $
 #
 
 COMMENT=	Graphics tools and libraries
 
 SUBDIR+=	CRWInfo
-SUBDIR+=	Cenon
 SUBDIR+=	Coin
 SUBDIR+=	GMT
 SUBDIR+=	GUIlib
@@ -107,6 +106,7 @@ SUBDIR+=	digikam
 SUBDIR+=	djview4
 SUBDIR+=	djvulibre-lib
 SUBDIR+=	djvulibre-tools
+SUBDIR+=	dmtx-utils
 SUBDIR+=	drawing
 SUBDIR+=	drawpile
 SUBDIR+=	dvipng
@@ -527,6 +527,7 @@ SUBDIR+=	py-openexr
 SUBDIR+=	py-piddle
 SUBDIR+=	py-piexif
 SUBDIR+=	py-pilkit
+SUBDIR+=	py-pillow_heif
 SUBDIR+=	py-pycha
 SUBDIR+=	py-pygal
 SUBDIR+=	py-pygraphviz
@@ -674,6 +675,8 @@ SUBDIR+=	tex-graphics-pln
 SUBDIR+=	tex-graphics-pln-doc
 SUBDIR+=	tex-hatching
 SUBDIR+=	tex-hatching-doc
+SUBDIR+=	tex-hershey-mp
+SUBDIR+=	tex-hershey-mp-doc
 SUBDIR+=	tex-incgraph
 SUBDIR+=	tex-incgraph-doc
 SUBDIR+=	tex-latexmp
@@ -704,6 +707,8 @@ SUBDIR+=	tex-mparrows
 SUBDIR+=	tex-mparrows-doc
 SUBDIR+=	tex-mpattern
 SUBDIR+=	tex-mpattern-doc
+SUBDIR+=	tex-mpchess
+SUBDIR+=	tex-mpchess-doc
 SUBDIR+=	tex-mpcolornames
 SUBDIR+=	tex-mpcolornames-doc
 SUBDIR+=	tex-mpgraphics
@@ -849,6 +854,7 @@ SUBDIR+=	vp
 SUBDIR+=	vtk
 SUBDIR+=	vtk-docs
 SUBDIR+=	vulkan-headers
+SUBDIR+=	wallust
 SUBDIR+=	wcslib
 SUBDIR+=	wld
 SUBDIR+=	wm-icons

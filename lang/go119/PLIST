@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.6 2023/01/11 17:24:29 bsiegert Exp $
+@comment $NetBSD: PLIST,v 1.8 2023/04/04 18:22:14 bsiegert Exp $
 bin/go${GOVERSSUFFIX}
 bin/gofmt${GOVERSSUFFIX}
 go119/CONTRIBUTING.md
@@ -2544,6 +2544,7 @@ go119/src/cmd/go/testdata/script/cgo_path_space.txt
 go119/src/cmd/go/testdata/script/cgo_path_space_quote.txt
 go119/src/cmd/go/testdata/script/cgo_stale.txt
 go119/src/cmd/go/testdata/script/cgo_stale_precompiled.txt
+go119/src/cmd/go/testdata/script/cgo_suspect_flag_force_external.txt
 go119/src/cmd/go/testdata/script/cgo_syso_issue29253.txt
 go119/src/cmd/go/testdata/script/cgo_undef.txt
 go119/src/cmd/go/testdata/script/clean_binary.txt
@@ -3145,6 +3146,7 @@ go119/src/cmd/go/testdata/script/version_buildvcs_fossil.txt
 go119/src/cmd/go/testdata/script/version_buildvcs_git.txt
 go119/src/cmd/go/testdata/script/version_buildvcs_hg.txt
 go119/src/cmd/go/testdata/script/version_buildvcs_nested.txt
+go119/src/cmd/go/testdata/script/version_gc_sections.txt
 go119/src/cmd/go/testdata/script/version_goexperiment.txt
 go119/src/cmd/go/testdata/script/version_replace.txt
 go119/src/cmd/go/testdata/script/vet.txt
@@ -6773,6 +6775,7 @@ go119/src/mime/multipart/formdata.go
 go119/src/mime/multipart/formdata_test.go
 go119/src/mime/multipart/multipart.go
 go119/src/mime/multipart/multipart_test.go
+go119/src/mime/multipart/readmimeheader.go
 go119/src/mime/multipart/testdata/nested-mime
 go119/src/mime/multipart/writer.go
 go119/src/mime/multipart/writer_test.go

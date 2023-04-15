@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.16 2022/05/26 15:43:37 mef Exp $
+@comment $NetBSD: PLIST,v 1.18 2023/04/11 11:20:51 mef Exp $
 include/gnuradio/digital/adaptive_algorithm.h
 include/gnuradio/digital/adaptive_algorithm_cma.h
 include/gnuradio/digital/adaptive_algorithm_lms.h

@@ -1,7 +1,7 @@
-# $NetBSD: Makefile,v 1.23 2023/01/11 17:28:35 bsiegert Exp $
+# $NetBSD: Makefile,v 1.29 2023/04/05 20:47:53 bsiegert Exp $
 
-DISTNAME=	elvish-0.18.0
-PKGREVISION=	10
+DISTNAME=	elvish-0.19.2
+PKGREVISION=	2
 CATEGORIES=	shells
 MASTER_SITES=	${MASTER_SITE_GITHUB:=elves/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -13,9 +13,7 @@ LICENSE=	2-clause-bsd
 
 INSTALLATION_DIRS=	bin
 PKG_SHELL=		bin/elvish
-GO_BUILD_PATTERN=	./...
 
-# needed for the tests
 USE_TOOLS+=		perl gmake
 
 do-install:

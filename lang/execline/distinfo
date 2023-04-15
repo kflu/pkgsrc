@@ -1,8 +1,8 @@
-$NetBSD: distinfo,v 1.12 2023/01/16 21:48:05 schmonz Exp $
+$NetBSD: distinfo,v 1.16 2023/04/14 17:38:54 schmonz Exp $
 
-BLAKE2s (execline-2.9.1.0.tar.gz) = b6f4f7e9989091ccc30624cc2e0acb30ea7fd01090bd6254faa2e27c2348cb8e
-SHA512 (execline-2.9.1.0.tar.gz) = 868cf7d2b99078b34e56c535d7cbcc2d7c6a85501f1cc5cd093ccd868906a2d2f52b872b8f60402d2c98ffc2e3145cc99ce392f3caf334f88decd8f17597b50d
-Size (execline-2.9.1.0.tar.gz) = 106227 bytes
-BLAKE2s (execline-man-pages-2.9.1.0.1.tar.gz) = 4407a16c4b52965b4639145dc99145228bd5f0bf86a93f4f37e2a363f53dab84
-SHA512 (execline-man-pages-2.9.1.0.1.tar.gz) = 8f4ad72a341e3eb51289affcbd74c3e09f3bd9dae0cb16a2ba24249eff85704347eae84b1cf275aa9aab366b758583a4fd32c9baeb37d8cd105dcfd6fd6e2752
-Size (execline-man-pages-2.9.1.0.1.tar.gz) = 38687 bytes
+BLAKE2s (execline-2.9.3.0.tar.gz) = 0a41b1e74cf057ecaac997487f3aeda22944b7f1b4e5652f849d224d623c3f1d
+SHA512 (execline-2.9.3.0.tar.gz) = a71a34896f2186e27959d84222ffefa15d2e43c802ad2c71a0442ee04be73aebe629079e31946ca776975e676a05840ce343e1a97f61bf420dad2cd450a948f2
+Size (execline-2.9.3.0.tar.gz) = 109536 bytes
+BLAKE2s (execline-man-pages-2.9.3.0.5.tar.gz) = 5181bdbc64882957ad3cd13c1999b1f34c073a6277d8cd6eecdf76231ea12b6a
+SHA512 (execline-man-pages-2.9.3.0.5.tar.gz) = cd24ad64a4bbdec991ddaf069b0458bb0807b80dda9911c2458564430e5dc705aef8bf48fd05019d3a5acdeec93837deea57cbb785c5d18f9cf07bd0be180674
+Size (execline-man-pages-2.9.3.0.5.tar.gz) = 44401 bytes

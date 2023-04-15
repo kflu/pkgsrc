@@ -1,10 +1,11 @@
-# $NetBSD: Makefile,v 1.330 2022/12/21 14:02:10 wiz Exp $
+# $NetBSD: Makefile,v 1.333 2023/04/09 11:14:06 plunky Exp $
 #
 
 COMMENT=	Multimedia utilities
 
 SUBDIR+=	acidrip
 SUBDIR+=	assimp
+SUBDIR+=	atomicparsley
 SUBDIR+=	audiocd-kio
 SUBDIR+=	avidemux
 SUBDIR+=	bitstream
@@ -194,6 +195,7 @@ SUBDIR+=	py-m3u8
 SUBDIR+=	py-ming
 SUBDIR+=	py-mpegdash
 SUBDIR+=	qt6-qtmultimedia
+SUBDIR+=	rav1e
 SUBDIR+=	regionset
 SUBDIR+=	replex
 SUBDIR+=	ruby-clutter-gstreamer
@@ -207,6 +209,7 @@ SUBDIR+=	smpeg2
 SUBDIR+=	ssr
 SUBDIR+=	streamlink
 SUBDIR+=	subtitleeditor
+SUBDIR+=	svt-av1
 SUBDIR+=	t-rec
 SUBDIR+=	totem
 SUBDIR+=	totem-pl-parser

@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.117 2023/02/08 10:31:14 adam Exp $
+# $NetBSD: Makefile,v 1.119 2023/04/04 11:24:42 adam Exp $
 #
 # Changelog: https://hypothesis.readthedocs.io/en/latest/changes.html
 
-DISTNAME=	hypothesis-6.67.1
+DISTNAME=	hypothesis-6.70.2
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=h/hypothesis/}
@@ -22,7 +22,8 @@ USE_PKG_RESOURCES=	yes
 PYTHON_VERSIONS_INCOMPATIBLE=	27
 
 .include "../../lang/python/pyversion.mk"
-.if ${_PYTHON_VERSION} != 311
+
+.if ${PYTHON_VERSION} < 311
 DEPENDS+=	${PYPKGPREFIX}-exceptiongroup>=1.0.0:../../devel/py-exceptiongroup
 .endif
 

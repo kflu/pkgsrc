@@ -1,25 +1,35 @@
-# $NetBSD: Makefile,v 1.74 2022/10/26 10:32:04 wiz Exp $
+# $NetBSD: Makefile,v 1.77 2023/04/14 21:41:06 nia Exp $
 
-DISTNAME=		elinks-0.12pre6
-PKGNAME=		${DISTNAME:S/pre/rc/}
-PKGREVISION=		21
-CATEGORIES=		www
-MASTER_SITES=		http://elinks.or.cz/download/
-MASTER_SITES+=		http://ftp.icm.edu.pl/packages/elinks/
-EXTRACT_SUFX=		.tar.bz2
+DISTNAME=	elinks-0.16.0
+CATEGORIES=	www
+MASTER_SITES=	${MASTER_SITE_GITHUB:=rkd77/}
+GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.tar.xz
 
-MAINTAINER=		pkgsrc-users@NetBSD.org
-HOMEPAGE=		http://elinks.or.cz/
-COMMENT=		Extended/Enhanced Links
-LICENSE=		gnu-gpl-v2
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/rkd77/elinks
+COMMENT=	Feature-rich text mode web browser
+LICENSE=	gnu-gpl-v2
 
-GNU_CONFIGURE=		yes
+CONFLICTS+=	felinks-[0-9]*
+SUPERSEDES+=	felinks-[0-9]*
+
 USE_PKGLOCALEDIR=	yes
+GNU_CONFIGURE=		yes
+USE_LANGUAGES=		c c++
 USE_TOOLS+=		gmake pkg-config
+USE_TOOLS+=		msgfmt xgettext
+
+# ld: no input files
+MAKE_JOBS_SAFE=	no
+
+post-install:
+	${RM} -f ${DESTDIR}${PREFIX}/lib/charset.alias
 
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/${PKGBASE}
 CONFIGURE_ARGS+=	--enable-256-colors
 CONFIGURE_ARGS+=	--enable-utf-8
+CONFIGURE_ARGS+=	--without-bzlib
 CONFIGURE_ARGS+=	--without-lzma
 CONFIGURE_ARGS+=	--without-lua
 
@@ -32,7 +42,6 @@ LIBS+=	-lexecinfo
 
 .include "options.mk"
 
-.include "../../archivers/bzip2/buildlink3.mk"
 .include "../../converters/libiconv/buildlink3.mk"
 .include "../../devel/libidn/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

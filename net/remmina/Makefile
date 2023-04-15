@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.86 2023/01/29 21:17:30 ryoon Exp $
+# $NetBSD: Makefile,v 1.88 2023/04/03 20:21:17 nros Exp $
 
-DISTNAME=	Remmina-v1.4.25
+DISTNAME=	Remmina-v1.4.29
 PKGNAME=	${DISTNAME:tl:S/-v/-/1}
-PKGREVISION=	11
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITLAB:=Remmina/}
 GITLAB_PROJECT=	Remmina
@@ -22,11 +22,13 @@ REPLACE_SH+=	data/desktop/remmina-file-wrapper.in
 
 CMAKE_ARGS+=	-DWITH_WWW=OFF
 
+CFLAGS.NetBSD+=		-D_NETBSD_SOURCE # for NI_MAXSERV constant
 LDFLAGS.SunOS+=		-lsocket -lnsl
 LDFLAGS.NetBSD+=	-rdynamic
 
 .include "options.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
+.include "../../lang/python/extension.mk"
 .include "../../net/freerdp2/buildlink3.mk"
 .include "../../net/libsoup/buildlink3.mk"
 .include "../../net/libvncserver/buildlink3.mk"

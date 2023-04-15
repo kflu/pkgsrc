@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.977 2023/01/30 23:09:56 wiz Exp $
+# $NetBSD: Makefile,v 1.981 2023/04/13 05:31:20 wiz Exp $
 #
 
 COMMENT=	Packages to support the X Window System
@@ -72,7 +72,6 @@ SUBDIR+=	gnome-themes
 SUBDIR+=	gnome-themes-extras
 SUBDIR+=	gnustep-back
 SUBDIR+=	gnustep-gui
-SUBDIR+=	gnustep-preferences
 SUBDIR+=	gromit
 SUBDIR+=	gselt
 SUBDIR+=	gst-plugins0.10-x11
@@ -334,6 +333,7 @@ SUBDIR+=	py-gtk2
 SUBDIR+=	py-gtksourceview
 SUBDIR+=	py-keybinder
 SUBDIR+=	py-kiwi
+SUBDIR+=	py-otherside
 SUBDIR+=	py-pyperclip
 SUBDIR+=	py-qt-builder
 SUBDIR+=	py-qt5
@@ -343,6 +343,7 @@ SUBDIR+=	py-qtgraph-qt5
 SUBDIR+=	py-qwt-qt5
 SUBDIR+=	py-sip
 SUBDIR+=	py-sip-qt5
+SUBDIR+=	py-sip-qt6
 SUBDIR+=	py-sip5
 SUBDIR+=	py-sip6
 SUBDIR+=	py-terminator
@@ -398,6 +399,7 @@ SUBDIR+=	qt5-qtxmlpatterns
 SUBDIR+=	qt5-styleplugins
 SUBDIR+=	qt5ct
 SUBDIR+=	qt6-qtbase
+SUBDIR+=	qt6-qtserialport
 SUBDIR+=	qterminal
 SUBDIR+=	qtermwidget
 SUBDIR+=	qtxdg-tools

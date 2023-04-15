@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.11 2009/06/14 22:00:21 joerg Exp $
+@comment $NetBSD: PLIST,v 1.13 2023/04/14 21:35:06 nia Exp $
 bin/elinks
 man/man1/elinks.1
 man/man5/elinks.conf.5
@@ -7,7 +7,6 @@ share/elinks/locale/af/LC_MESSAGES/elinks.mo
 share/elinks/locale/be/LC_MESSAGES/elinks.mo
 share/elinks/locale/bg/LC_MESSAGES/elinks.mo
 share/elinks/locale/ca/LC_MESSAGES/elinks.mo
-share/elinks/locale/charset.alias
 share/elinks/locale/cs/LC_MESSAGES/elinks.mo
 share/elinks/locale/da/LC_MESSAGES/elinks.mo
 share/elinks/locale/de/LC_MESSAGES/elinks.mo
@@ -22,6 +21,7 @@ share/elinks/locale/hu/LC_MESSAGES/elinks.mo
 share/elinks/locale/id/LC_MESSAGES/elinks.mo
 share/elinks/locale/is/LC_MESSAGES/elinks.mo
 share/elinks/locale/it/LC_MESSAGES/elinks.mo
+share/elinks/locale/ja/LC_MESSAGES/elinks.mo
 share/elinks/locale/locale.alias
 share/elinks/locale/lt/LC_MESSAGES/elinks.mo
 share/elinks/locale/nb/LC_MESSAGES/elinks.mo
@@ -36,3 +36,4 @@ share/elinks/locale/sr/LC_MESSAGES/elinks.mo
 share/elinks/locale/sv/LC_MESSAGES/elinks.mo
 share/elinks/locale/tr/LC_MESSAGES/elinks.mo
 share/elinks/locale/uk/LC_MESSAGES/elinks.mo
+@pkgdir lib

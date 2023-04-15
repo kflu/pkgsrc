@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.168 2023/01/23 13:13:19 wiz Exp $
+$NetBSD: distinfo,v 1.170 2023/03/29 10:23:05 wiz Exp $
 
-BLAKE2s (poppler-23.01.0.tar.xz) = e4efe9ca8b53587fb3d9a49c696cfd74d9b2eda8e8394de18ad5dc533182a118
-SHA512 (poppler-23.01.0.tar.xz) = a44fd59cdb4dc1c04765990d9666f27538895883fe98a64e7bea30caebeab10875615282307fbd6eacecf83b7a7c8daa81afa1b13ae6c09b80673e3fb8563053
-Size (poppler-23.01.0.tar.xz) = 1847492 bytes
+BLAKE2s (poppler-23.03.0.tar.xz) = 43863aca93f44ff593fca762d60c2fafffffa13ad382309ad2af2fa582fef78d
+SHA512 (poppler-23.03.0.tar.xz) = 1c370d9262141ff5b720a4c3cf6f01573047398f8950295e3e99f32700946e3241e26e3d909cf78a278fc402306811fd87977d0f86a744f3eaedb4f39b8e8a2c
+Size (poppler-23.03.0.tar.xz) = 1849324 bytes

@@ -33,11 +33,15 @@ func (ck *MkVarUseChecker) Check(vuc *VarUseContext) {
 	ck.checkAssignable(vuc)
 	ck.checkQuoting(vuc)
 
+	if G.Pkgsrc == nil {
+		goto checkVarUse
+	}
 	ck.checkToolsPlatform()
 	ck.checkBuildDefs()
 	ck.checkDeprecated()
 	ck.checkPkgBuildOptions()
 
+checkVarUse:
 	NewMkLineChecker(ck.MkLines, ck.MkLine).
 		checkTextVarUse(ck.use.varname, ck.vartype, vuc.time)
 }
@@ -57,7 +61,7 @@ func (ck *MkVarUseChecker) checkUndefined() {
 		ck.MkLines.allVars.Mentioned(varname) != nil,
 		ck.MkLines.pkg != nil && ck.MkLines.pkg.vars.IsDefinedSimilar(varname),
 		containsVarUse(varname),
-		G.Pkgsrc.vartypes.IsDefinedCanon(varname),
+		G.Project.Types().IsDefinedCanon(varname),
 		varname == "":
 		return
 	}
@@ -833,10 +837,7 @@ func (ck *MkVarUseChecker) checkBuildDefs() {
 
 func (ck *MkVarUseChecker) checkDeprecated() {
 	varname := ck.use.varname
-	instead := G.Pkgsrc.Deprecated[varname]
-	if instead == "" {
-		instead = G.Pkgsrc.Deprecated[varnameCanon(varname)]
-	}
+	instead := G.Project.Deprecated(varname)
 	if instead == "" {
 		return
 	}

@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.18 2023/01/15 15:09:32 taca Exp $
+# $NetBSD: Makefile,v 1.20 2023/03/15 13:45:00 taca Exp $
 
 DISTNAME=	redmine-${RM_VERSION}
 PKGNAME=	${RUBY_PKGPREFIX}-${DISTNAME:S/redmine/redmine${RM_VER}/}
-PKGREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://www.redmine.org/releases/
 
@@ -13,7 +12,7 @@ LICENSE=	gnu-gpl-v2 # and so on.
 
 USE_TOOLS+=	pax
 
-RM_VERSION=	4.2.9
+RM_VERSION=	4.2.10
 
 NO_BUILD=	yes
 
@@ -31,7 +30,7 @@ REPLACE_RUBY+=	public/dispatch.fcgi.example
 
 .include "../../lang/ruby/modules.mk"
 
-DEPENDS+=	${RUBY_PKGPREFIX}-bundler>=1.5.0:../../misc/ruby-bundler
+#DEPENDS+=	${RUBY_PKGPREFIX}-bundler>=1.5.0:../../misc/ruby-bundler
 DEPENDS+=	${RUBY_RAILS_DEPENDS}
 DEPENDS+=	${RUBY_PKGPREFIX}-rouge>=3.26:../../www/ruby-rouge
 DEPENDS+=	${RUBY_PKGPREFIX}-request_store>=1.5.0<1.6:../../www/ruby-request_store
@@ -44,7 +43,7 @@ DEPENDS+=	${RUBY_PKGPREFIX}-mail>=2.7.1<2.8:../../mail/ruby-mail
 DEPENDS+=	${RUBY_PKGPREFIX}-csv>=3.1.1:../../textproc/ruby-csv
 DEPENDS+=	${RUBY_PKGPREFIX}-nokogiri>=1.13.6:../../textproc/ruby-nokogiri
 DEPENDS+=	${RUBY_PKGPREFIX}-i18n>=1.8.2<2:../../devel/ruby-i18n
-DEPENDS+=	${RUBY_PKGPREFIX}-rbpdf>=1.20.0<1.21:../../print/ruby-rbpdf
+DEPENDS+=	${RUBY_PKGPREFIX}-rbpdf>=1.21.0<1.22:../../print/ruby-rbpdf
 DEPENDS+=	${RUBY_PKGPREFIX}-addressable>=0:../../net/ruby-addressable
 DEPENDS+=	${RUBY_PKGPREFIX}-zip>=2.3.0<2.4:../../archivers/ruby-zip
 #DEPENDS+=	${RUBY_PKGPREFIX}-tzinfo-data>=1:../../time/ruby-tzinfo-data

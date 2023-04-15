@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.20 2022/11/09 13:14:20 joerg Exp $
+# $NetBSD: Makefile,v 1.23 2023/03/17 08:17:08 tnn Exp $
 
-DISTNAME=		libXaw-1.0.14
-PKGREVISION=		1
+DISTNAME=		libXaw-1.0.15
 CATEGORIES=		x11 graphics
 MASTER_SITES=		${MASTER_SITE_XORG:=lib/}
-EXTRACT_SUFX=		.tar.bz2
+EXTRACT_SUFX=		.tar.xz
 
 MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		https://xorg.freedesktop.org/
@@ -16,6 +15,20 @@ PKGCONFIG_OVERRIDE+=	xaw6.pc.in
 PKGCONFIG_OVERRIDE+=	xaw7.pc.in
 GNU_CONFIGURE=		yes
 CONFIGURE_ENV+=		LIB_MAN_SUFFIX=3
+
+.include "../../mk/bsd.prefs.mk"
+
+# remove compatibility links that never were in pkgsrc
+post-install:
+.if ${OBJECT_FMT} == "Mach-O"
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libXaw.dylib
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libXaw.6.dylib
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libXaw.7.dylib
+.else
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libXaw.so
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libXaw.so.6
+	${RM} -f ${DESTDIR}${PREFIX}/lib/libXaw.so.7
+.endif
 
 .include "../../x11/libICE/buildlink3.mk"
 .include "../../x11/libSM/buildlink3.mk"

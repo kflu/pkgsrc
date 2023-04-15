@@ -129,6 +129,13 @@ func (s *Suite) Test_MkCondChecker_Check(c *check.C) {
 		"WARN: filename.mk:4: Invalid variable modifier \"//*\" for \"MASTER_SITES\".",
 		"WARN: filename.mk:4: \"ftp\" is not a valid URL.",
 		"WARN: filename.mk:4: MASTER_SITES should not be used at load time in any file.")
+
+	test(".if !",
+		"WARN: filename.mk:4: Invalid condition, unrecognized part: \"\".")
+
+	// TODO: There should be another error for the '.elif' outside '.if'.
+	test(".elif 0",
+		"ERROR: filename.mk:5: Unmatched .endif.")
 }
 
 func (s *Suite) Test_MkCondChecker_Check__tracing(c *check.C) {
@@ -249,6 +256,14 @@ func (s *Suite) Test_MkCondChecker_Check__contradicting_conditions(c *check.C) {
 				"!empty(MACHINE_PLATFORM:MNetBSD-9.99.*) && "+
 				"!empty(MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*)",
 			".endif"),
+		"NOTE: filename.mk:5:"+
+			" \"!empty(MACHINE_PLATFORM:MNetBSD-9.99.*)\" "+
+			"can be simplified to "+
+			"\"${MACHINE_PLATFORM:MNetBSD-9.99.*}\".",
+		"NOTE: filename.mk:5: "+
+			"\"!empty(MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*)\" "+
+			"can be simplified to "+
+			"\"${MACHINE_PLATFORM:MNetBSD-[1-9][0-9].*}\".",
 		"ERROR: filename.mk:5: The patterns \"NetBSD-9.99.*\" "+
 			"and \"NetBSD-[1-9][0-9].*\" cannot match at the same time.")
 
@@ -599,7 +614,7 @@ func (s *Suite) Test_MkCondChecker_checkCompareVarStr__no_tracing(c *check.C) {
 	t.CheckOutputEmpty()
 }
 
-func (s *Suite) Test_MkCondChecker_checkCompareVarNum(c *check.C) {
+func (s *Suite) Test_MkCondChecker_checkCompareWithNum(c *check.C) {
 	t := s.Init(c)
 
 	mklines := t.NewMkLines("filename.mk",
@@ -613,11 +628,11 @@ func (s *Suite) Test_MkCondChecker_checkCompareVarNum(c *check.C) {
 
 	t.CheckOutputLines(
 		"WARN: filename.mk:4: Numeric comparison > 6.5.",
-		"ERROR: filename.mk:4: The Python version must not be compared numerically.",
+		"ERROR: filename.mk:4: _PYTHON_VERSION must not be compared numerically.",
 		"WARN: filename.mk:4: _PYTHON_VERSION is used but not defined.")
 }
 
-func (s *Suite) Test_MkCondChecker_checkCompareVarNumVersion(c *check.C) {
+func (s *Suite) Test_MkCondChecker_checkCompareWithNumVersion(c *check.C) {
 	t := s.Init(c)
 
 	mklines := t.NewMkLines("filename.mk",
@@ -638,31 +653,33 @@ func (s *Suite) Test_MkCondChecker_checkCompareVarNumVersion(c *check.C) {
 		"WARN: filename.mk:8: Numeric comparison == 6.5.")
 }
 
-func (s *Suite) Test_MkCondChecker_checkCompareVarNumPython(c *check.C) {
+func (s *Suite) Test_MkCondChecker_checkCompareWithNumPython(c *check.C) {
 	t := s.Init(c)
 
+	t.SetUpCommandLine("--show-autofix")
 	mklines := t.NewMkLines("filename.mk",
 		MkCvsID,
 		"",
 		"_PYTHON_VERSION=\tnone",
 		"",
 		".if ${_PYTHON_VERSION} < 38",
-		".endif",
-		"",
-		".if ${_PYTHON_VERSION} < 310",
+		".elif ${_PYTHON_VERSION} < 310",
+		".elif \"\" < 310",
 		".endif")
 
 	mklines.Check()
 
 	t.CheckOutputLines(
-		"WARN: filename.mk:3: "+
-			"Variable names starting with an underscore "+
-			"(_PYTHON_VERSION) are reserved "+
-			"for internal pkgsrc use.",
 		"ERROR: filename.mk:5: "+
-			"The Python version must not be compared numerically.",
-		"ERROR: filename.mk:8: "+
-			"The Python version must not be compared numerically.")
+			"_PYTHON_VERSION must not be compared numerically.",
+		"AUTOFIX: filename.mk:5: "+
+			"Replacing \"${_PYTHON_VERSION} < 38\" "+
+			"with \"${PYTHON_VERSION} < 308\".",
+		"ERROR: filename.mk:6: "+
+			"_PYTHON_VERSION must not be compared numerically.",
+		"AUTOFIX: filename.mk:6: "+
+			"Replacing \"${_PYTHON_VERSION} < 310\" "+
+			"with \"${PYTHON_VERSION} < 310\".")
 }
 
 func (s *Suite) Test_MkCondChecker_checkCompareVarStrCompiler(c *check.C) {

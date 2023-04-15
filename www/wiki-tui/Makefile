@@ -1,12 +1,12 @@
-# $NetBSD: Makefile,v 1.13 2023/01/01 20:49:41 pin Exp $
+# $NetBSD: Makefile,v 1.15 2023/02/21 13:22:48 pin Exp $
 
-DISTNAME=	wiki-tui-0.6.1
+DISTNAME=	wiki-tui-0.6.4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GITHUB:=Builditluc/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
 
 MAINTAINER=	pin@NetBSD.org
-HOMEPAGE=	https://github.com/Builditluc/wiki-tui/
+HOMEPAGE=	https://builditluc.github.io/wiki-tui/
 COMMENT=	Simple and easy to use Wikipedia TUI
 LICENSE=	mit
 

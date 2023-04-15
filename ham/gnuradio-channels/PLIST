@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.10 2022/05/26 15:20:08 mef Exp $
+@comment $NetBSD: PLIST,v 1.12 2023/04/11 11:20:51 mef Exp $
 include/gnuradio/channels/api.h
 include/gnuradio/channels/channel_model.h
 include/gnuradio/channels/channel_model2.h

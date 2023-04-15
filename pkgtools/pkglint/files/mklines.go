@@ -62,7 +62,9 @@ func NewMkLines(lines *Lines, pkg *Package, extraScope *Scope) *MkLines {
 	}
 
 	tools := NewTools()
-	tools.Fallback(G.Pkgsrc.Tools)
+	if G.Pkgsrc != nil {
+		tools.Fallback(G.Pkgsrc.Tools)
+	}
 
 	return &MkLines{
 		mklines,
@@ -424,7 +426,9 @@ func (mklines *MkLines) checkAll() {
 		"pre-package": true, "do-package": true, "post-package": true,
 		"pre-clean": true, "do-clean": true, "post-clean": true}
 
-	mklines.lines.CheckCvsID(0, `#[\t ]+`, "# ")
+	if G.Pkgsrc != nil {
+		mklines.lines.CheckCvsID(0, `#[\t ]+`, "# ")
+	}
 
 	substContext := NewSubstContext(mklines.pkg)
 	var varalign VaralignBlock

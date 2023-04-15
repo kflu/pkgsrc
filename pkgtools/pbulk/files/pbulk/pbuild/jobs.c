@@ -1,4 +1,4 @@
-/* $NetBSD: jobs.c,v 1.18 2023/02/10 23:14:32 joerg Exp $ */
+/* $NetBSD: jobs.c,v 1.20 2023/02/12 21:17:24 joerg Exp $ */
 
 /*-
  * Copyright (c) 2007, 2009, 2011 Joerg Sonnenberger <joerg@NetBSD.org>.
@@ -64,7 +64,8 @@ static struct build_job *jobs;
 static size_t allocated_jobs, len_jobs;
 static char *scan_output_content;
 
-static TAILQ_HEAD(, build_job) buildable_jobs;
+static struct build_job **buildable_jobs;
+static size_t buildable_jobs_len;
 
 #if defined(__GNUC__) && __GNUC__ >= 2
 __attribute__((__format__(__printf__, 1, 2)))
@@ -164,6 +165,7 @@ compute_tree_depth_rec(struct build_job *job, struct build_job *root, char *seen
 		return 0;
 	seen[job - jobs] = 1;
 	++root->pkg_depth;
+	root->pkg_weighted_depth += job->pkg_weight;
 	SLIST_FOREACH(dep_iter, &job->depending_pkgs, depends_link) {
 		if (compute_tree_depth_rec(dep_iter->dependency, root, seen)) {
 			fprintf(stderr, "%s\n", job->pkgname);
@@ -179,6 +181,7 @@ compute_tree_depth(struct build_job *job, char *seen)
 	memset(seen, 0, len_jobs);
 
 	job->pkg_depth = 0;
+	job->pkg_weighted_depth = 0;
 	if (compute_tree_depth_rec(job, job, seen))
 		exit(1);
 }
@@ -190,8 +193,6 @@ init_jobs(const char *scan_output, const char *success_file, const char *error_f
 	const char *input_iter;
 	int fd;
 	size_t i;
-
-	TAILQ_INIT(&buildable_jobs);
 
 	if ((fd = open(scan_output, O_RDONLY, 0)) == -1)
 		err(1, "Cannot open input");
@@ -232,6 +233,9 @@ init_jobs(const char *scan_output, const char *success_file, const char *error_f
 	if (*input_iter != '\0')
 		errx(1, "Invalid input");
 	scan_output_content = input;
+
+	buildable_jobs = xmalloc(len_jobs * sizeof(*buildable_jobs));
+	buildable_jobs_len = 0;
 
 	hash_entries();
 	build_tree();
@@ -281,6 +285,29 @@ mark_initial_state(int fd, enum job_state state, const char *type)
 }
 
 static void
+parse_weight(struct build_job *job)
+{
+	const char *line;
+	char *eos;
+	long long value;
+
+	line = find_content(job, "PBULK_WEIGHT=");
+	if (line == NULL) {
+		job->pkg_weight = 100;
+		return;
+	}
+	errno = 0;
+	value = strtoll(line, &eos, 10);
+	if (errno || line == eos || *eos != '\n')
+		errx(1, "Invalid PBULK_WEIGHT for package %s", job->pkgname);
+	if (value < 0 && value <= LLONG_MIN / len_jobs)
+		errx(1, "PBULK_WEIGHT too small for package %s", job->pkgname);
+	if (value > 0 && value >= LLONG_MAX / len_jobs)
+		errx(1, "PBULK_WEIGHT too large for package %s", job->pkgname);
+	job->pkg_weight = value;
+}
+
+static void
 mark_initial(void)
 {
 	const char *line;
@@ -299,7 +326,7 @@ mark_initial(void)
 			process_job(&jobs[i], JOB_PREFAILED, 0);
 			continue;
 		}
-	}		
+	}
 
 	mark_initial_state(log_success, JOB_DONE, "successful");
 	mark_initial_state(log_failed, JOB_FAILED, "failing");
@@ -310,17 +337,31 @@ mark_initial(void)
 }
 
 static void
+swap_buildable_entries(size_t i, size_t j)
+{
+	struct build_job *job1, *job2;
+
+	job1 = buildable_jobs[i];
+	job2 = buildable_jobs[j];
+	job1->buildable_index = j;
+	job2->buildable_index = i;
+	buildable_jobs[i] = job2;
+	buildable_jobs[j] = job1;
+}
+
+static void
 add_to_build_list(struct build_job *job)
 {
-	struct build_job *iter;
+	size_t idx;
 
-	TAILQ_FOREACH(iter, &buildable_jobs, build_link) {
-		if (iter->pkg_depth < job->pkg_depth) {
-			TAILQ_INSERT_BEFORE(iter, job, build_link);
-			return;
-		}
+	job->buildable_index = buildable_jobs_len++;
+	buildable_jobs[job->buildable_index] = job;
+	while ((idx = job->buildable_index)) {
+		if (buildable_jobs[(idx - 1) / 2]->pkg_weighted_depth >=
+		    job->pkg_weighted_depth)
+			break;
+		swap_buildable_entries(idx, (idx - 1) / 2);
 	}
-	TAILQ_INSERT_TAIL(&buildable_jobs, job, build_link);
 }
 
 static void
@@ -333,6 +374,8 @@ build_tree(void)
 
 	for (i = 0; i < len_jobs; ++i) {
 		job = &jobs[i];
+
+		parse_weight(job);
 
 		if ((depends = find_content(job, "DEPENDS=")) == NULL)
 			continue;
@@ -362,7 +405,41 @@ build_tree(void)
 int
 has_job(void)
 {
-	return !TAILQ_EMPTY(&buildable_jobs);
+	return buildable_jobs_len != 0;
+}
+
+static void
+buildable_jobs_remove_head(void)
+{
+	size_t idx, idx2;
+
+	--buildable_jobs_len;
+	if (buildable_jobs_len == 0)
+		return;
+
+	/* Move last element to head */
+	buildable_jobs[0] = buildable_jobs[buildable_jobs_len];
+	buildable_jobs[0]->buildable_index = 0;
+
+	idx = 0;
+	for (;;) {
+		/* Find biggest child. */
+		idx2 = idx;
+		if (idx * 2 + 1 < buildable_jobs_len &&
+		    buildable_jobs[2 * idx + 1]->pkg_weighted_depth >
+		    buildable_jobs[idx2]->pkg_weighted_depth) {
+			idx2 = 2 * idx + 1;
+		}
+		if (idx * 2 + 2 < buildable_jobs_len &&
+		    buildable_jobs[2 * idx + 2]->pkg_weighted_depth >
+		    buildable_jobs[idx2]->pkg_weighted_depth) {
+			idx2 = 2 * idx + 2;
+		}
+		if (idx == idx2)
+			break;
+		swap_buildable_entries(idx, idx2);
+		idx = idx2;
+	}
 }
 
 struct build_job *
@@ -370,11 +447,14 @@ get_job(void)
 {
 	struct build_job *job;
 
-	if ((job = TAILQ_FIRST(&buildable_jobs)) != NULL) {
-		TAILQ_REMOVE(&buildable_jobs, job, build_link);
+	if (buildable_jobs_len == 0)
+		return NULL;
 
-		process_job(job, JOB_IN_PROCESSING, 0);
-	}
+	job = buildable_jobs[0];
+	process_job(job, JOB_IN_PROCESSING, 0);
+
+	buildable_jobs_remove_head();
+
 	return job;
 }
 
@@ -530,8 +610,8 @@ finish_build(const char *report_file)
 		default:
 			errx(1, "internal error");
 		}
-		fprintf(report, "%s|%s||%d\n", jobs[i].pkgname, status,
-		    jobs[i].pkg_depth);
+		fprintf(report, "%s|%s||%d|%lld\n", jobs[i].pkgname, status,
+		    jobs[i].pkg_depth, jobs[i].pkg_weighted_depth);
 	}
 }
 

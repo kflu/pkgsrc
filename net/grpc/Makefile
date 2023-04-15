@@ -1,6 +1,6 @@
-# $NetBSD: Makefile,v 1.66 2023/01/24 18:36:31 wiz Exp $
+# $NetBSD: Makefile,v 1.68 2023/04/09 09:26:49 nros Exp $
 
-DISTNAME=	grpc-1.51.1
+DISTNAME=	grpc-1.51.3
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_GITHUB:=grpc/}
 GITHUB_TAG=	v${PKGVERSION_NOREV}
@@ -32,14 +32,15 @@ SITES.${CENSUS_DIST}=	-${MASTER_SITE_GITHUB:=census-instrumentation/opencensus-p
 
 DISTFILES=	${DEFAULT_DISTFILES} ${CENSUS_DIST}
 
+PKGCONFIG_OVERRIDE=	cmake/pkg-config-template.pc.in
+
 post-extract:
 	${RMDIR} ${WRKSRC}/third_party/opencensus-proto
 	${LN} -s ${WRKDIR}/opencensus-proto-* ${WRKSRC}/third_party/opencensus-proto
 
-.include "../../devel/cmake/build.mk"
-.include "../../mk/atomic64.mk"
 .include "../../benchmarks/google-benchmark/buildlink3.mk"
 .include "../../devel/abseil/buildlink3.mk"
+.include "../../devel/cmake/build.mk"
 .include "../../devel/gflags/buildlink3.mk"
 BUILDLINK_API_DEPENDS.protobuf+=	protobuf>=3.5
 .include "../../devel/protobuf/buildlink3.mk"
@@ -48,4 +49,5 @@ BUILDLINK_API_DEPENDS.protobuf+=	protobuf>=3.5
 BUILDLINK_API_DEPENDS.libcares+=	libcares>=1.15.0nb1
 .include "../../net/libcares/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
+.include "../../mk/atomic64.mk"
 .include "../../mk/bsd.pkg.mk"

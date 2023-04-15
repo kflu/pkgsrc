@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.40 2020/07/07 01:01:27 manu Exp $
+@comment $NetBSD: PLIST,v 1.42 2023/03/28 01:10:53 gutteridge Exp $
 ${PYSITELIB}/gluster/__init__.py
 ${PYSITELIB}/gluster/__init__.pyc
 ${PYSITELIB}/gluster/__init__.pyo
@@ -9,23 +9,6 @@ ${PYSITELIB}/gluster/cliutils/cliutils.py
 ${PYSITELIB}/gluster/cliutils/cliutils.pyc
 ${PYSITELIB}/gluster/cliutils/cliutils.pyo
 bin/glusterfind
-etc/ganesha/ganesha-ha.conf.sample
-etc/glusterfs/eventsconfig.json
-etc/glusterfs/gluster-rsyslog-5.8.conf
-etc/glusterfs/gluster-rsyslog-7.2.conf
-etc/glusterfs/glusterd.vol
-etc/glusterfs/glusterfs-georep-logrotate
-etc/glusterfs/glusterfs-logrotate
-etc/glusterfs/group-db-workload
-etc/glusterfs/group-distributed-virt
-etc/glusterfs/group-gluster-block
-etc/glusterfs/group-metadata-cache
-etc/glusterfs/group-nl-cache
-etc/glusterfs/group-samba
-etc/glusterfs/group-virt.example
-etc/glusterfs/gsyncd.conf
-etc/glusterfs/logger.conf.example
-etc/glusterfs/thin-arbiter.vol
 include/glusterfs/api/glfs-handles.h
 include/glusterfs/api/glfs.h
 include/glusterfs/async.h
@@ -38,6 +21,7 @@ include/glusterfs/client_t.h
 include/glusterfs/cluster-syncop.h
 include/glusterfs/common-utils.h
 include/glusterfs/compat-errno.h
+include/glusterfs/compat-io_uring.h
 include/glusterfs/compat-uuid.h
 include/glusterfs/compat.h
 include/glusterfs/daemon.h
@@ -51,6 +35,9 @@ include/glusterfs/fd.h
 include/glusterfs/gd-common-utils.h
 include/glusterfs/gf-dirent.h
 include/glusterfs/gf-event.h
+include/glusterfs/gf-io-common.h
+include/glusterfs/gf-io-legacy.h
+include/glusterfs/gf-io.h
 include/glusterfs/gfchangelog/changelog.h
 include/glusterfs/gidcache.h
 include/glusterfs/glfs-message-id.h
@@ -289,12 +276,12 @@ libexec/glusterfs/python/syncdaemon/libgfchangelog.pyo
 libexec/glusterfs/python/syncdaemon/logutils.py
 libexec/glusterfs/python/syncdaemon/logutils.pyc
 libexec/glusterfs/python/syncdaemon/logutils.pyo
-libexec/glusterfs/python/syncdaemon/master.py
-libexec/glusterfs/python/syncdaemon/master.pyc
-libexec/glusterfs/python/syncdaemon/master.pyo
 libexec/glusterfs/python/syncdaemon/monitor.py
 libexec/glusterfs/python/syncdaemon/monitor.pyc
 libexec/glusterfs/python/syncdaemon/monitor.pyo
+libexec/glusterfs/python/syncdaemon/primary.py
+libexec/glusterfs/python/syncdaemon/primary.pyc
+libexec/glusterfs/python/syncdaemon/primary.pyo
 libexec/glusterfs/python/syncdaemon/py2py3.py
 libexec/glusterfs/python/syncdaemon/py2py3.pyc
 libexec/glusterfs/python/syncdaemon/py2py3.pyo
@@ -318,7 +305,7 @@ libexec/glusterfs/scripts/get-gfid.sh
 libexec/glusterfs/scripts/gsync-sync-gfid
 libexec/glusterfs/scripts/gsync-upgrade.sh
 libexec/glusterfs/scripts/schedule_georep.py
-libexec/glusterfs/scripts/slave-upgrade.sh
+libexec/glusterfs/scripts/secondary-upgrade.sh
 libexec/glusterfs/set_geo_rep_pem_keys.sh
 man/man8/gluster-setgfid2path.8
 man/man8/gluster.8
@@ -349,6 +336,23 @@ share/doc/glusterfs/benchmarking/local-script.sh
 share/doc/glusterfs/benchmarking/rdd.c
 share/doc/glusterfs/glusterfs-mode.el
 share/doc/glusterfs/glusterfs.vim
+share/examples/glusterfs/eventsconfig.json
+share/examples/glusterfs/ganesha/ganesha-ha.conf.sample
+share/examples/glusterfs/gluster-rsyslog-5.8.conf
+share/examples/glusterfs/gluster-rsyslog-7.2.conf
+share/examples/glusterfs/glusterd.vol
+share/examples/glusterfs/glusterfs-georep-logrotate
+share/examples/glusterfs/glusterfs-logrotate
+share/examples/glusterfs/group-db-workload
+share/examples/glusterfs/group-distributed-virt
+share/examples/glusterfs/group-gluster-block
+share/examples/glusterfs/group-metadata-cache
+share/examples/glusterfs/group-nl-cache
+share/examples/glusterfs/group-samba
+share/examples/glusterfs/group-virt.example
+share/examples/glusterfs/gsyncd.conf
+share/examples/glusterfs/logger.conf.example
+share/examples/glusterfs/thin-arbiter.vol
 share/examples/rc.d/glusterd
 share/glusterfs/scripts/eventsdash.py
 share/glusterfs/scripts/post-upgrade-script-for-quota.sh

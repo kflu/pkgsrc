@@ -1,8 +1,8 @@
-# $NetBSD: Makefile,v 1.112 2023/01/11 21:58:42 nikita Exp $
+# $NetBSD: Makefile,v 1.115 2023/02/22 09:20:31 wiz Exp $
 
 DISTNAME=	erlang-${DIST_VERSION_MAJOR}.${DIST_VERSION_MINOR}${!empty(DIST_VERSION_PATCH):?.:}${DIST_VERSION_PATCH}
 PKGNAME=	${DISTNAME:S/OTP-/erlang-/}
-PKGREVISION=	1
+PKGREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GITHUB:=erlang/}
 GITHUB_PROJECT=	otp
@@ -17,7 +17,7 @@ EXTRACT_USING=	bsdtar
 
 WRKSRC=		${WRKDIR}/otp-${GITHUB_TAG}
 GNU_CONFIGURE=	yes
-USE_TOOLS+=	autoconf awk gmake perl:run flex
+USE_TOOLS+=	awk gmake perl:run flex
 USE_LANGUAGES+=	c c++
 
 # "This run-time was supposed be compiled with all code below 2Gb,
@@ -41,6 +41,8 @@ CONFIGURE_ARGS+=	--with-ssl=${BUILDLINK_PREFIX.openssl}
 
 PTHREAD_OPTS+=		require native
 CONFIGURE_ARGS+=	--enable-threads
+# https://github.com/erlang/otp/issues/6909
+CONFIGURE_ARGS.NetBSD+=	--disable-jit
 
 MAKE_ENV+=		DESTDIR=${DESTDIR}
 
@@ -77,9 +79,6 @@ CHECK_RELRO_SKIP+=	lib/erlang/lib/megaco-${VERSION.megaco}/priv/lib/megaco_flex_
 CHECK_RELRO_SKIP+=	lib/erlang/lib/megaco-${VERSION.megaco}/priv/lib/megaco_flex_scanner_drv_mt.so
 
 .include "options.mk"
-
-pre-configure:
-	cd ${WRKSRC} && ./otp_build autoconf
 
 ###
 ### Ensure this gets rebuilt.

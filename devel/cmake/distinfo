@@ -1,8 +1,8 @@
-$NetBSD: distinfo,v 1.205 2023/01/20 13:08:07 adam Exp $
+$NetBSD: distinfo,v 1.210 2023/04/06 11:01:18 adam Exp $
 
-BLAKE2s (cmake-3.25.2.tar.gz) = 9104e3ffca9dd7e5190a8718903aa53ce8a6d74d1d34e8b467e354048c16e1dd
-SHA512 (cmake-3.25.2.tar.gz) = 20146d06a1722c36249192944a58e4780aad334d2bc5ce2a3d8c4f24656630c5b71ca0ae7ed53587e3d46f488bd773452fa60c3fc7045fe54db2dbc6ffd86390
-Size (cmake-3.25.2.tar.gz) = 10561266 bytes
+BLAKE2s (cmake-3.26.3.tar.gz) = cf35d302a0be4556b211aa702694a7c03a96eb1400e44ec64713c1d02924e22a
+SHA512 (cmake-3.26.3.tar.gz) = b09447318512b91c772e36c764049789224032c6c650289a94f6311f999ca104b617bf2dced57b723da23472f015549affabd9c8c076857490c47a1aee7eb7a0
+Size (cmake-3.26.3.tar.gz) = 10668855 bytes
 SHA1 (patch-Auxiliary_CMakeLists.txt) = 7a26ef79be53b9d0370029e83f203440aa0be2a4
 SHA1 (patch-CMakeLists.txt) = 0fb79458828a021a96e350bc4cf12875914f868b
 SHA1 (patch-Modules_Compiler_GNU.cmake) = e091c53ac3f3a6cd811119d3231563df32e76bf9
@@ -15,10 +15,11 @@ SHA1 (patch-Modules_FindPython_Support.cmake) = aaec7767cad795dd269c851bd110ccef
 SHA1 (patch-Modules_FindX11.cmake) = 124a2d51155cb4455e8b829dc74598cbd50a4e1c
 SHA1 (patch-Modules_Platform_Darwin.cmake) = 7629f034111ff64b144ff41316299d5edcfe081a
 SHA1 (patch-Modules_Platform_UnixPaths.cmake) = 911271546d3ac52be0e8000857bdb236ac50ec1c
-SHA1 (patch-Source_Checks_Curses_CMakeLists.txt) = 37d95c6162cc1f4c0e47b537ac8204cb9fe75b8c
+SHA1 (patch-Source_Checks_Curses_CMakeLists.txt) = 88b6eb834ce7f186f2ebf63a5c40355d0ace9cd9
 SHA1 (patch-Source_Checks_Curses_CheckCurses.c) = c86cae48f7b39fb735eba4788d4e9d595b2ccf3b
 SHA1 (patch-Source_Checks_cm__cxx17__check.cpp) = d5e2708df6fcda078b1b5ea59264c663d2633ced
 SHA1 (patch-Source_Modules_CMakeBuildUtilities.cmake) = 7046fb8a0d2aadb81e027d8e2f1a4bccf2bd79cf
 SHA1 (patch-Source_QtDialog_CMakeLists.txt) = 1cefaa7ee6cd09e84d699ea54844ae3811d890f7
+SHA1 (patch-Source_cmSystemTools.cxx) = 31d736e21ce7f03192cf029a8b6419caa6f00a65
 SHA1 (patch-Utilities_KWIML_CMakeLists.txt) = e4bdf9fc58757e87bf7e3e3e195839eededbc796
 SHA1 (patch-bootstrap) = e34f5b888790e766338086b8c3680be79b71ef18

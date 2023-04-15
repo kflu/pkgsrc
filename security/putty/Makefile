@@ -1,8 +1,7 @@
-# $NetBSD: Makefile,v 1.73 2023/01/29 21:17:41 ryoon Exp $
+# $NetBSD: Makefile,v 1.75 2023/02/14 18:19:49 tnn Exp $
 #
 
-DISTNAME=	putty-0.76
-PKGREVISION=	4
+DISTNAME=	putty-0.78
 CATEGORIES=	security
 MASTER_SITES=	http://the.earth.li/~sgtatham/putty/${PKGVERSION_NOREV}/
 
@@ -11,13 +10,10 @@ HOMEPAGE=	https://www.chiark.greenend.org.uk/~sgtatham/putty/
 COMMENT=	Free implementation of Telnet and SSH for Win32 and Unix platforms
 LICENSE=	mit
 
-USE_TOOLS+=	gmake pkg-config
-BUILD_DIRS=	unix
+USE_CMAKE=	yes
+USE_TOOLS+=	perl pkg-config
 
-MAKE_FILE=	Makefile.gtk
-MAKE_FLAGS+=	mandir=${PREFIX}/${PKGMANDIR}
-
-INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
+#INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
 .include "options.mk"
 
@@ -40,9 +36,8 @@ LDFLAGS.Linux+=	-ldl
 
 .include "../../x11/gtk3/buildlink3.mk"
 .if !empty(PKG_BUILD_OPTIONS.gtk3:Mquartz)
-# Override default GTK_CONFIG from Makefile.gtk to prevent search for x11.pc
-MAKE_FLAGS+=	"GTK_CONFIG=pkg-config gtk+-3.0"
-CFLAGS+=	-DOSX_GTK
+BUILDLINK_TRANSFORM+=	rm:-lX11 rm:-lXext
+CFLAGS+=		-DOSX_GTK
 .endif
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

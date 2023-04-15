@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.238 2023/01/29 10:20:40 wiz Exp $
+# $NetBSD: Makefile,v 1.241 2023/04/13 05:31:05 wiz Exp $
 #
 
 COMMENT=	Clocks, calendars, daily planners and other time related applications
@@ -103,6 +103,7 @@ SUBDIR+=	p5-DateTime-Format-Pg
 SUBDIR+=	p5-DateTime-Format-SQLite
 SUBDIR+=	p5-DateTime-Format-Strptime
 SUBDIR+=	p5-DateTime-Format-W3CDTF
+SUBDIR+=	p5-DateTime-HiRes
 SUBDIR+=	p5-DateTime-Incomplete
 SUBDIR+=	p5-DateTime-Locale
 SUBDIR+=	p5-DateTime-Precise
@@ -121,6 +122,7 @@ SUBDIR+=	p5-Schedule-At
 SUBDIR+=	p5-Schedule-Cron-Events
 SUBDIR+=	p5-Template-Plugin-DateTime
 SUBDIR+=	p5-Test-MockTime
+SUBDIR+=	p5-Test-MockTime-HiRes
 SUBDIR+=	p5-Test-Time
 SUBDIR+=	p5-Time-Clock
 SUBDIR+=	p5-Time-Duration

@@ -1,4 +1,4 @@
-# $NetBSD: Makefile,v 1.1034 2023/02/01 02:22:28 pho Exp $
+# $NetBSD: Makefile,v 1.1039 2023/03/15 10:07:27 pin Exp $
 #
 
 COMMENT=	System utilities
@@ -78,7 +78,6 @@ SUBDIR+=	bsign
 SUBDIR+=	btpin-qt
 SUBDIR+=	bubblemon
 SUBDIR+=	bup
-SUBDIR+=	burn
 SUBDIR+=	burp
 SUBDIR+=	caja
 SUBDIR+=	caja-dropbox
@@ -205,6 +204,7 @@ SUBDIR+=	edbus
 SUBDIR+=	efreet
 SUBDIR+=	eggdbus
 SUBDIR+=	entr
+SUBDIR+=	erdtree
 SUBDIR+=	erlang-goldrush
 SUBDIR+=	erlang-lager
 SUBDIR+=	estd
@@ -465,6 +465,7 @@ SUBDIR+=	nautilus
 SUBDIR+=	navi
 SUBDIR+=	nbase
 SUBDIR+=	ncdu
+SUBDIR+=	ncdu2
 SUBDIR+=	ndesk-dbus
 SUBDIR+=	ndesk-dbus-glib
 SUBDIR+=	neb-wipe
@@ -527,6 +528,7 @@ SUBDIR+=	p5-Unix-Processors
 SUBDIR+=	p5-Unix-Statgrab
 SUBDIR+=	p5-Unix-Syslog
 SUBDIR+=	p5-collectd
+SUBDIR+=	packer
 SUBDIR+=	parallel-disk-usage
 SUBDIR+=	pciutils
 SUBDIR+=	pcmanfm
@@ -931,6 +933,11 @@ SUBDIR+=	zabbix50-frontend
 SUBDIR+=	zabbix50-java
 SUBDIR+=	zabbix50-proxy
 SUBDIR+=	zabbix50-server
+SUBDIR+=	zabbix60-agent
+SUBDIR+=	zabbix60-frontend
+SUBDIR+=	zabbix60-java
+SUBDIR+=	zabbix60-proxy
+SUBDIR+=	zabbix60-server
 SUBDIR+=	zidrav
 SUBDIR+=	znapzend
 SUBDIR+=	zoxide

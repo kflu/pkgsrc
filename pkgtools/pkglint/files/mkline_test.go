@@ -333,6 +333,20 @@ func (s *Suite) Test_MkLine_ValueFields__compared_to_splitIntoShellTokens(c *che
 	// Most probably, the shell will complain about it when it is executed.
 }
 
+func (s *Suite) Test_MkLine_ValueFields__escaped_number_sign(c *check.C) {
+	t := s.Init(c)
+	mklines := t.NewMkLines("filename.mk",
+		".SHELL: \\",
+		"\tname=sh \\",
+		"\tpath=${.SHELL} \\",
+		"\tquiet=\"\\# .echoOff\"")
+	mkline := mklines.mklines[0]
+
+	words := mkline.ValueFields(mkline.Sources())
+
+	t.CheckDeepEquals(words, []string{"name=sh", "path=${.SHELL}", "quiet=\"# .echoOff\""})
+}
+
 func (s *Suite) Test_MkLine_ValueTokens(c *check.C) {
 	t := s.Init(c)
 	b := NewMkTokenBuilder()
@@ -629,8 +643,8 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_URL_to_list_of_URLs(c *
 		"MASTER_SITES=\t${HOMEPAGE}")
 	mkline := mklines.mklines[1]
 
-	vuc := VarUseContext{G.Pkgsrc.vartypes.Canon("MASTER_SITES"), VucRunTime, VucQuotPlain, false}
-	nq := mkline.VariableNeedsQuoting(nil, NewMkVarUse("HOMEPAGE"), G.Pkgsrc.vartypes.Canon("HOMEPAGE"), &vuc)
+	vuc := VarUseContext{G.Pkgsrc.Types().Canon("MASTER_SITES"), VucRunTime, VucQuotPlain, false}
+	nq := mkline.VariableNeedsQuoting(nil, NewMkVarUse("HOMEPAGE"), G.Pkgsrc.Types().Canon("HOMEPAGE"), &vuc)
 
 	t.CheckEquals(nq, no)
 
@@ -639,7 +653,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_URL_to_list_of_URLs(c *
 	t.CheckOutputEmpty() // Up to version 5.3.6, pkglint warned about a missing :Q here, which was wrong.
 }
 
-func (s *Suite) Test_MkLine_VariableNeedsQuoting__append_list_to_list(c *check.C) {
+func (s *Suite) Test_MkLine_VariableNeedsQuoting__assign_list_to_list(c *check.C) {
 	t := s.Init(c)
 
 	t.SetUpVartypes()
@@ -1011,8 +1025,7 @@ func (s *Suite) Test_MkLine_VariableNeedsQuoting__only_remove_known(c *check.C) 
 }
 
 // TODO: COMPILER_RPATH_FLAG and LINKER_RPATH_FLAG have different types
-//
-//	defined in vardefs.go; examine why.
+// defined in vardefs.go; examine why.
 func (s *Suite) Test_MkLine_VariableNeedsQuoting__shellword_part(c *check.C) {
 	t := s.Init(c)
 

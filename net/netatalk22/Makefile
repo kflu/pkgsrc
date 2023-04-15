@@ -1,10 +1,10 @@
-# $NetBSD: Makefile,v 1.51 2023/02/07 23:00:40 hauke Exp $
+# $NetBSD: Makefile,v 1.54 2023/03/02 08:15:25 hauke Exp $
 
-DISTNAME=	netatalk-2.2.7
-PKGREVISION=	1
+DISTNAME=	netatalk-2.2.8
 PKGNAME=	${DISTNAME:C/-/22-/}
+PKGREVISION=	1
 CATEGORIES=	net print
-MASTER_SITES=	${MASTER_SITE_GITHUB:=Netatalk/}Netatalk/releases/download/netatalk-2-2-7/
+MASTER_SITES=	${MASTER_SITE_GITHUB:=Netatalk/}Netatalk/releases/download/${DISTNAME:C/\./-/g}/
 #PATCHFILES=	patch-adv1tov2.c
 PATCH_SITES=	http://svn.macosforge.org/repository/macports/trunk/dports/net/netatalk/files/ \
 		http://mirror.lug.udel.edu/pub/macports/trunk/dports/net/netatalk/files/

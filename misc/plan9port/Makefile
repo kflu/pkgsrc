@@ -1,10 +1,9 @@
-# $NetBSD: Makefile,v 1.3 2023/01/29 21:17:13 ryoon Exp $
+# $NetBSD: Makefile,v 1.5 2023/03/08 22:30:52 vins Exp $
 
-DISTNAME=	plan9port-20220912
-PKGREVISION=	1
+DISTNAME=	plan9port-20230123
 CATEGORIES=	misc plan9
 MASTER_SITES=	${MASTER_SITE_GITHUB:=9fans/}
-GITHUB_TAG=	ffbdd1aa20c8a20a8e9dcd3cec644b6dfa3c6acb
+GITHUB_TAG=	e2a141ae0952c2d28a9f500bb9da6dc72e57be3c
 
 MAINTAINER=	vins@NetBSD.org
 HOMEPAGE=	https://9fans.github.io/plan9port/
@@ -65,8 +64,8 @@ SUBST_MESSAGE.cc=	Defining preferred compiler.
 SUBST_CLASSES+=		prefix
 SUBST_STAGE.prefix=	pre-configure
 SUBST_FILES.prefix+=	src/cmd/devdraw/mkwsysrules.sh
-SUBST_FILES.prefix+=	plan9.sh acme.sh
-SUBST_VARS.prefix=	PREFIX
+SUBST_FILES.prefix+=	INSTALL plan9.sh acme.sh
+SUBST_VARS.prefix=	PREFIX X11BASE
 SUBST_MESSAGE.prefix=	Replacing PREFIX placeholders.
 
 PLAN9_TARGET=	${PREFIX}/plan9

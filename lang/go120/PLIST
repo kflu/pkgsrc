@@ -1,4 +1,4 @@
-@comment $NetBSD: PLIST,v 1.1 2023/02/05 13:25:26 bsiegert Exp $
+@comment $NetBSD: PLIST,v 1.4 2023/04/04 18:33:25 bsiegert Exp $
 bin/go${GOVERSSUFFIX}
 bin/gofmt${GOVERSSUFFIX}
 go120/CONTRIBUTING.md
@@ -404,6 +404,7 @@ go120/misc/cgo/testshared/testdata/issue44031/b/b.go
 go120/misc/cgo/testshared/testdata/issue44031/main/main.go
 go120/misc/cgo/testshared/testdata/issue47837/a/a.go
 go120/misc/cgo/testshared/testdata/issue47837/main/main.go
+go120/misc/cgo/testshared/testdata/issue58966/main.go
 go120/misc/cgo/testshared/testdata/trivial/trivial.go
 go120/misc/cgo/testso/noso_test.go
 go120/misc/cgo/testso/overlaydir_test.go
@@ -1619,6 +1620,8 @@ go120/src/cmd/go/internal/robustio/robustio_other.go
 go120/src/cmd/go/internal/robustio/robustio_windows.go
 go120/src/cmd/go/internal/run/run.go
 go120/src/cmd/go/internal/script/cmds.go
+go120/src/cmd/go/internal/script/cmds_other.go
+go120/src/cmd/go/internal/script/cmds_posix.go
 go120/src/cmd/go/internal/script/conds.go
 go120/src/cmd/go/internal/script/engine.go
 go120/src/cmd/go/internal/script/errors.go
@@ -1937,6 +1940,7 @@ go120/src/cmd/go/testdata/script/cgo_path_space.txt
 go120/src/cmd/go/testdata/script/cgo_path_space_quote.txt
 go120/src/cmd/go/testdata/script/cgo_stale.txt
 go120/src/cmd/go/testdata/script/cgo_stale_precompiled.txt
+go120/src/cmd/go/testdata/script/cgo_suspect_flag_force_external.txt
 go120/src/cmd/go/testdata/script/cgo_syso_issue29253.txt
 go120/src/cmd/go/testdata/script/cgo_undef.txt
 go120/src/cmd/go/testdata/script/chdir.txt
@@ -2574,6 +2578,7 @@ go120/src/cmd/go/testdata/script/version_buildvcs_git.txt
 go120/src/cmd/go/testdata/script/version_buildvcs_hg.txt
 go120/src/cmd/go/testdata/script/version_buildvcs_nested.txt
 go120/src/cmd/go/testdata/script/version_cshared.txt
+go120/src/cmd/go/testdata/script/version_gc_sections.txt
 go120/src/cmd/go/testdata/script/version_goexperiment.txt
 go120/src/cmd/go/testdata/script/version_replace.txt
 go120/src/cmd/go/testdata/script/vet.txt
@@ -2755,7 +2760,9 @@ go120/src/cmd/internal/buildid/testdata/a.pe.base64
 go120/src/cmd/internal/buildid/testdata/p.a.base64
 go120/src/cmd/internal/codesign/codesign.go
 go120/src/cmd/internal/cov/mreader.go
+go120/src/cmd/internal/cov/read_test.go
 go120/src/cmd/internal/cov/readcovdata.go
+go120/src/cmd/internal/cov/testdata/small.go
 go120/src/cmd/internal/dwarf/dwarf.go
 go120/src/cmd/internal/dwarf/dwarf_defs.go
 go120/src/cmd/internal/dwarf/dwarf_test.go
@@ -6371,6 +6378,7 @@ go120/src/mime/multipart/formdata.go
 go120/src/mime/multipart/formdata_test.go
 go120/src/mime/multipart/multipart.go
 go120/src/mime/multipart/multipart_test.go
+go120/src/mime/multipart/readmimeheader.go
 go120/src/mime/multipart/testdata/nested-mime
 go120/src/mime/multipart/writer.go
 go120/src/mime/multipart/writer_test.go
@@ -10993,11 +11001,18 @@ go120/test/fixedbugs/issue57846.go
 go120/test/fixedbugs/issue5793.go
 go120/test/fixedbugs/issue5809.go
 go120/test/fixedbugs/issue5820.go
+go120/test/fixedbugs/issue58293.go
+go120/test/fixedbugs/issue58325.go
+go120/test/fixedbugs/issue58341.go
 go120/test/fixedbugs/issue5841.go
 go120/test/fixedbugs/issue5856.go
+go120/test/fixedbugs/issue58563.dir/a.go
+go120/test/fixedbugs/issue58563.dir/main.go
+go120/test/fixedbugs/issue58563.go
 go120/test/fixedbugs/issue5910.dir/a.go
 go120/test/fixedbugs/issue5910.dir/main.go
 go120/test/fixedbugs/issue5910.go
+go120/test/fixedbugs/issue59293.go
 go120/test/fixedbugs/issue5957.dir/a.go
 go120/test/fixedbugs/issue5957.dir/b.go
 go120/test/fixedbugs/issue5957.dir/c.go
@@ -11839,6 +11854,7 @@ go120/test/typeparam/issue54535.go
 go120/test/typeparam/issue54537.go
 go120/test/typeparam/issue54765.go
 go120/test/typeparam/issue55101.go
+go120/test/typeparam/issue58513.go
 go120/test/typeparam/list.go
 go120/test/typeparam/list2.go
 go120/test/typeparam/listimp.dir/a.go

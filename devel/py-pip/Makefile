@@ -1,7 +1,8 @@
-# $NetBSD: Makefile,v 1.58 2022/11/11 07:52:15 taca Exp $
+# $NetBSD: Makefile,v 1.61 2023/03/29 09:34:08 wiz Exp $
 
-DISTNAME=	pip-22.3.1
+DISTNAME=	pip-23.0.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME}
+PKGREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_PYPI:=p/pip/}
 
@@ -21,7 +22,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	27
 USE_PKG_RESOURCES=	yes
 
 .include "../../lang/python/pyversion.mk"
-FILES_SUBST+=  PYMAJORVERSION=${_PYTHON_VERSION:C/^([0-9]).*/\1/}
+FILES_SUBST+=  PYMAJORVERSION=${PYTHON_VERSION:C/^([0-9]).*/\1/}
 
 post-install:
 	cd ${DESTDIR}${PREFIX}/bin && ${RM} -f pip pip[2-3]

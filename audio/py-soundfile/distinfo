@@ -1,5 +1,5 @@
-$NetBSD: distinfo,v 1.2 2022/10/24 10:38:49 adam Exp $
+$NetBSD: distinfo,v 1.4 2023/02/18 21:01:13 adam Exp $
 
-BLAKE2s (soundfile-0.11.0.tar.gz) = 1f0ef0f4682a9d899160d2275397b22b2daa96050d33bffbce969857c51e725e
-SHA512 (soundfile-0.11.0.tar.gz) = fc6a6ff3b093436f151ed79d1a6186b44640f2f4e204d6d0d76a1eedc799ee637a0f76d1390f05dc2d7fcaab5dca30eca781896043249e7ee1142fb2c0a3dca4
-Size (soundfile-0.11.0.tar.gz) = 41679 bytes
+BLAKE2s (soundfile-0.12.1.tar.gz) = cb371102c9436c4770f57fa330014a36777d246858f523b87c8c5713d1442e1a
+SHA512 (soundfile-0.12.1.tar.gz) = 59ddf404ca235b6a6ba12ab063f14cf1e1488751024a8e26068f47ea3151e5eb342799db2c2cef57cc57d20f34ebebaed5d8d5bb4c3945c7fdbd45d0e585d117
+Size (soundfile-0.12.1.tar.gz) = 43184 bytes

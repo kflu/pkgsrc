@@ -1,11 +1,11 @@
-# $NetBSD: Makefile,v 1.6 2023/01/30 08:47:27 pin Exp $
+# $NetBSD: Makefile,v 1.15 2023/04/12 10:20:52 pin Exp $
 
-DISTNAME=	gospt-0.0.34
+DISTNAME=	gospt-0.0.47
 CATEGORIES=	audio
-MASTER_SITES=	-https://gitea.asdf.cafe/abs3nt/gospt/archive/v${PKGVERSION_NOREV}.tar.gz
+MASTER_SITES=	-https://git.asdf.cafe/abs3nt/gospt/archive/v${PKGVERSION_NOREV}.tar.gz
 
 MAINTAINER=	pin@NetBSD.org
-HOMEPAGE=	https://gitea.asdf.cafe/abs3nt/gospt/
+HOMEPAGE=	https://git.asdf.cafe/abs3nt/gospt/
 COMMENT=	Spotify TUI and CLI
 LICENSE=	mit
 

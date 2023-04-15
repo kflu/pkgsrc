@@ -1,9 +1,9 @@
-# $NetBSD: Makefile.common,v 1.18 2022/11/27 23:34:48 nia Exp $
+# $NetBSD: Makefile.common,v 1.20 2023/03/18 15:05:41 nia Exp $
 #
 # used by databases/mariadb105-client/Makefile
 # used by databases/mariadb105-server/Makefile
 
-DISTNAME=	mariadb-10.5.18
+DISTNAME=	mariadb-10.5.19
 CATEGORIES=	databases
 MASTER_SITES=	https://archive.mariadb.org/${DISTNAME}/source/
 
@@ -55,10 +55,6 @@ CMAKE_ARGS+=		-DINSTALL_SQLBENCHDIR="share/mysql/sql-bench"
 CMAKE_ARGS+=		-DINSTALL_SUPPORTFILESDIR="share/mysql"
 CMAKE_ARGS+=		-DINSTALL_SYSCONFDIR="${PKG_SYSCONFDIR}"
 CMAKE_ARGS+=		-DMYSQL_DATADIR=${MARIADB_DATADIR}
-
-.if ${OPSYS} == "SunOS"
-CMAKE_ARGS+=		-DWITH_MARIABACKUP=OFF
-.endif
 
 CMAKE_ARGS+=		-DWITH_UNIT_TESTS=OFF
 CMAKE_ARGS+=		-DWITH_LIBWRAP=ON
