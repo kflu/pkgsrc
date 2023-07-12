@@ -954,7 +954,7 @@ TOOLS_PATH.${_t_}=		${LOCALBASE}/bin/${_t_}
 # there is no native tool available.
 #
 _TOOLS.coreutils=	basename cat chgrp chmod chown cp cut date	\
-		dirname echo env expr false head hostname id install	\
+		dirname echo env expr false head id install		\
 		ln ls mkdir mv nice numfmt printf pwd readlink realpath \
 		rm rmdir sleep sort tail tee test touch tr true tsort wc
 
